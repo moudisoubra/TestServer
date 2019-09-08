@@ -1,0 +1,3 @@
+D:\Unity Projects\SoubraServer\SoubraServer\SoubraServer\obj\Release\SoubraServer.njsproj.CoreCompileInputs.cache
+D:\Unity Projects\SoubraServer\SoubraServer\SoubraServer\bin\Microsoft.NodejsTools.WebRole.dll
+D:\Unity Projects\SoubraServer\SoubraServer\SoubraServer\obj\Release\SoubraServer.njsprojAssemblyReference.cache

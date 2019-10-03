@@ -88,10 +88,11 @@ server.get("/Login/:userLogin/:userPassword", function (req, res, next)
             {
                 var string = "User Logged In";
 
+                var string2 = user.toString();
                 
                 console.log(string);
 
-                res.send({user});
+                res.send(user);
             }
             else
             {

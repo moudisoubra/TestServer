@@ -68,6 +68,7 @@ server.get("/FindUser/:userLogin", function (req, res, next) {
 
 server.get("/Login/:userLogin/:userPassword", function (req, res, next)
 {
+
     var userLogin = req.params.userLogin;
     var userPassword = req.params.userPassword;
 
@@ -84,7 +85,7 @@ server.get("/Login/:userLogin/:userPassword", function (req, res, next)
         }
         else
         {
-            if(userPassword == user.userPassword)
+            if(userPassword === user.userPassword)
             {
                 var string = "User Logged In";
 
@@ -92,7 +93,7 @@ server.get("/Login/:userLogin/:userPassword", function (req, res, next)
 
                 res.send(string.toString());
             }
-            else if(userPassword != user.userPassword)
+            else
             {
                 var string = "Wrong Password";
 

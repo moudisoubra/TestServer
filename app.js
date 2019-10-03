@@ -90,7 +90,7 @@ server.get("/Login/:userLogin/:userPassword", function (req, res, next)
 
                 console.log(string);
 
-                res.send({user});
+                res.send(user.toString());
             }
             else
             {
@@ -101,8 +101,6 @@ server.get("/Login/:userLogin/:userPassword", function (req, res, next)
                 res.send(string.toString());
             }
         }
-
-
     });
 });
 

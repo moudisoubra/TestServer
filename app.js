@@ -85,7 +85,7 @@ server.get("/Login/:userLogin/:userPassword", function (req, res, next)
         }
         else
         {
-            if(userPassword === user.userPassword)
+            if(userPassword === user.user_Password)
             {
                 var string = "User Logged In";
 

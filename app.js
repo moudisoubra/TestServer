@@ -28,9 +28,8 @@ var usersSchema = new mongoose.Schema({
     user_Name: String,
     user_Gender: String, 
     user_Seniority: String,
-    user_House: int,
-    user_Login: String,
-    user_Password: String
+    user_House: Number,
+    user_Login: String
 });
 
 var User = mongoose.model('User', usersSchema);

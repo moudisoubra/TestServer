@@ -74,11 +74,10 @@ server.get("/Login/:userLogin/:userPassword", function (req, res, next)
 
     User.findOne({ "user_Login": userLogin}, (err, user) => 
     {
-
         if  (!user)
         {
             var string = "Didn't find a user with that Login";
-            
+
             console.log(string);
 
             res.send(string.toString());

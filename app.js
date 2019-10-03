@@ -91,7 +91,7 @@ server.get("/Login/:userLogin/:userPassword", function (req, res, next)
 
                 console.log(string);
 
-                res.send(string.toString());
+                res.send({user});
             }
             else
             {

@@ -87,10 +87,10 @@ server.get("/Login/:userLogin/:userPassword", function (req, res, next)
             if(userPassword === user.user_Password)
             {
                 var string = "User Logged In";
-
+                var string = user.toString();
                 console.log(string);
 
-                res.send(user.toString());
+                res.send(user);
             }
             else
             {

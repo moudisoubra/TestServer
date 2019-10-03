@@ -2,6 +2,7 @@
 var restify = require("restify");
 var fs = require("fs");
 var mongoose = require('mongoose');
+var uuid = require('uuid');
 var server = restify.createServer();
 
 console.log('Test server Activated');
@@ -18,57 +19,65 @@ mongoose.connect(uristring, { useNewUrlParser: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
-    console.log("Connected to Mongoose!");
+    console.log("MongoDB online!");
 });
 
 var usersSchema = new mongoose.Schema({
     user_ID: String,
+    user_Password: String,
     user_Name: String,
-    user_House: String
+    user_Gender: String, 
+    user_Seniority: String,
+    user_House: int,
+    user_Login: String,
+    user_Password: String
 });
 
 var User = mongoose.model('User', usersSchema);
 
-server.get("/Goodnight", function (req, res, next) 
-{
-
-    var goodnight = "Goodnight.";
-    
-    res.send(goodnight.toString());
-
-});
-
 server.get("/wakeup", function (req, res, next) {
 
-    var string = "WakeUp!";
+    var string = "Server is awake!";
 
     res.send(string.toString());
 });
 
-server.get("/FindPlayer/:playerID", function (req, res, next) {
+server.get("/FindUser/:userID", function (req, res, next) {
 
-    var playerID = req.params.playerID;
+    var userID = req.params.userID;
 
-    Player.findOne({ "player_ID": playerID }, (err, player) => {
+    User.findOne({ "user_ID": userID }, (err, user) => {
 
-        if (!player) {
-            console.log("Didnt find a player with that ID");
+        if (!user) 
+        {
+            console.log("Didnt find a user with that ID");
+
+            var string = "Didn't find a user with that ID";
+
+            res.send(string.toString());
         }
-        else {
-            console.log("Found player: " + player);
+        else 
+        {
+            console.log("Found User: " + user);
 
-            var string = player.toString();
+            var string = user.toString();
 
-            res.send(player);//
+            res.send(user);
         }
     });
 });
 
-server.get("/AddUser/:userID/:userName/:userHouse", function (req, res, next) {
+
+
+server.get("/AddUser/:userID/:userName/:userGender/:userSeniority/:userHouse/:userLogin/:userPassword", function (req, res, next) {
 
     var userID = req.params.userID;
     var userName = req.params.userName;
+    var userGender = req.params.userGender;
+    var userSeniority = req.params.userSeniority;
     var userHouse = req.params.userHouse;
+    var userLogin = req.params.userLogin;
+    var userPassword = req.params.userPassword;
 
     User.findOne({ "user_ID": userID }, (err, user) => {
 
@@ -79,7 +88,11 @@ server.get("/AddUser/:userID/:userName/:userHouse", function (req, res, next) {
             var U = new User({
                 "user_ID": userID,
                 "user_Name": userName,
-                "user_House": userHouse
+                "user_Gender": userGender,
+                "user_Seniority": userSeniority,
+                "user_House": userHouse,
+                "user_Login": userLogin,
+                "user_Password": userPassword
             });
 
             console.log("Created: " + U);
@@ -94,7 +107,11 @@ server.get("/AddUser/:userID/:userName/:userHouse", function (req, res, next) {
 
                 "user_ID": userID,
                 "user_Name": userName,
-                "user_House": userHouse
+                "user_Gender": userGender,
+                "user_Seniority": userSeniority,
+                "user_House": userHouse, 
+                "user_Login": userLogin,
+                "user_Password": userPassword
             });
 
             console.log("User Found: " + user);
@@ -143,68 +160,57 @@ server.get("/AddUser/:userID/:userName/:userHouse", function (req, res, next) {
 //     });
 // });
 
-// server.get("/clearOneMongo/:playerID", function (req, res) { 
-//     //Sets the information based on the input from the user
-//     var player_ID = req.params.playerID;
-//     Player.findOneAndDelete({ "player_ID": player_ID }, (err, player) => { //Finds one user
-//         if (!player) { //If we dont find the player within the database
-//             console.log("Player already deleted!");
-//         }
-//         else {
-//             console.log("Found player: " + player);
-//             res.send({ player }); //The player already exists in the database & will be sent to us.
-//         }
-//     });
-// });
-
-// server.get("/ClearAll", function (req, res) { //BIG RED BUTTON
-
-//     Player.remove({}, function (err) {
-//         console.log('DataBase Wiped')
-
-//         var string = "DataBase Wiped";
+server.get("/DeleteUser/:userID", function (req, res) { 
     
-//         res.send(string.toString());
-//     });
+    var userID = req.params.userID;
 
-// });
+    User.findOneAndDelete({ "user_ID": userID }, (err, user) => { 
 
-// server.get("/SortByID", function (req, res) {
+        if (!user) { 
+            console.log("Player already deleted!");
+        }
+        else {
+            console.log("Found player: " + user);
+            res.send({ user });
+        }
+    });
+});
 
-//     Player.find({}).sort({ player_ID: 1 }).exec(function (err, ID)
-//     {
-//         var leaderboard = ID;
+server.get("/ClearAll", function (req, res) { //BIG RED BUTTON
 
-//         console.log(leaderboard);
+    User.remove({}, function (err) {
+        console.log('DataBase Wiped')
 
-//         res.send({ leaderboard });
-//     });
-
-// });
-
-// server.get("/listAllMongo", function (req, res) { //LISTS ALL PLAYERS IN THE DATABASE
-//     Player.find(function (err, player) {
-
-//         if (err) return console.error(err);
-
-//         console.log(player);
-
-//         res.send({ player });
-//     });
-// });
-
-// server.get("/ListDataBaseCount", function (req, res) {
-
-//     Player.count({}, function (err, c) {
-
-//         res.send({ c });
-
-//         console.log('Count is ' + c);
-//     });
-
-// });
+        var string = "DataBase Wiped";
     
-//--------------------------------------------------------------SAVING TO FILE--------------------------------------------------------------------------//
+        res.send(string.toString());
+    });
+
+});
+
+server.get("/SortByID", function (req, res) {
+
+    User.find({}).sort({ user_ID: 1 }).exec(function (err, ID)
+    {
+        var leaderboard = ID;
+
+        console.log(leaderboard);
+
+        res.send({ leaderboard });
+    });
+
+});
+
+server.get("/listAllMongo", function (req, res) { //LISTS ALL PLAYERS IN THE DATABASE
+    User.find(function (err, user) {
+
+        if (err) return console.error(err);
+
+        console.log(user);
+
+        res.send({ user });
+    });
+});
 
 server.listen(process.env.PORT || 3000, function () { /// Heroku Port process.env.PORT
 

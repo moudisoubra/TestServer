@@ -41,17 +41,17 @@ server.get("/wakeup", function (req, res, next) {
     res.send(string.toString());
 });
 
-server.get("/FindUser/:userID", function (req, res, next) {
+server.get("/FindUser/:userLogin", function (req, res, next) {
 
-    var userID = req.params.userID;
+    var userLogin = req.params.userLogin;
 
-    User.findOne({ "user_ID": userID }, (err, user) => {
+    User.findOne({ "user_Login": userLogin }, (err, user) => {
 
         if (!user) 
         {
-            console.log("Didnt find a user with that ID");
+            console.log("Didnt find a user with that Login");
 
-            var string = "Didn't find a user with that ID";
+            var string = "Didn't find a user with that Login";
 
             res.send(string.toString());
         }
@@ -66,9 +66,49 @@ server.get("/FindUser/:userID", function (req, res, next) {
     });
 });
 
+server.get("/Login/:userLogin/:userPassword", function (req, res, next)
+{
+    var userLogin = req.params.userLogin;
+    var userPassword = req.params.userPassword;
 
+    User.findOne({ "user_Login": userLogin}, (err, user) => 
+    {
+
+        if  (!user)
+        {
+            var string = "Didn't find a user with that Login";
+            
+            console.log(string);
+
+            res.send(string.toString());
+        }
+        else
+        {
+            if(userPassword == user.userPassword)
+            {
+                var string = "User Logged In";
+
+                console.log(string);
+
+                res.send(string.toString());
+            }
+            else if(userPassword != user.userPassword)
+            {
+                var string = "Wrong Password";
+
+                console.log(string);
+
+                res.send(string.toString());
+            }
+        }
+
+
+    });
+});
 
 server.get("/AddUser/:userID/:userName/:userGender/:userSeniority/:userHouse/:userLogin/:userPassword", function (req, res, next) {
+
+    //AddUser/1/Soubra/Male/Intern/1/Soubra/123
 
     var userID = req.params.userID;
     var userName = req.params.userName;

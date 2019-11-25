@@ -5,14 +5,14 @@ var express = require("express"),
 
     upload.use(uploadFile())
 
-    console.log("Server Started!")
+    console.log("Upload Server Started!")
 
-    upload.get("/", function(req, res)
+    upload.get("/uploadpage", function(req, res)
     {
         res.sendFile(__dirname+"/index.html");
     })
 
-    upload.post("/upload", function(req, res){
+    upload.post("/", function(req, res){
         if(req.files){
 
             console.log(req.files)

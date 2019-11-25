@@ -39,7 +39,7 @@ var express = require("express"),
 
         var name = req.params.picName;
 
-        res.sendFile(__dirname, "./Uploads/name", function(err){
+        res.sendFile(__dirname, "./Uploads/"+name, function(err){
 
             if(err){
                 console.log(err);

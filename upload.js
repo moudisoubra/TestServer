@@ -18,7 +18,7 @@ var express = require("express"),
             console.log(req.files)
 
             var file = req.files.fileName,
-                filename = file.name;
+                filename = "pic";
                 
                 file.mv("./Uploads/" + filename, function(err){
 
@@ -34,3 +34,20 @@ var express = require("express"),
         
         }
     })
+
+    upload.get("/downlaodFile/:picName", (req, res) => {
+
+        var name = req.params.picName;
+
+        res.sendFile(__dirname, "./Uploads/name", function(err){
+
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log("HERE IS THE PIC");
+            }
+        })
+
+        //res.sendFile(path.join(__dirname, "./Uploads/pic.jpg"));
+      });

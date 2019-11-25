@@ -3,6 +3,9 @@ var restify = require("restify");
 var fs = require("fs");
 var mongoose = require('mongoose');
 var uuid = require('uuid');
+var express = require('express');
+var BP =  require('body-parser');
+var multer = require('multer');
 var server = restify.createServer();
 
 console.log('Test server Activated');
@@ -13,7 +16,7 @@ var uristring =
     process.env.MONGODB_URI ||
     process.env.MONGOHQ_URL ||
     'mongodb://localhost/MeltDown';
-
+ 
 mongoose.connect(uristring, { useNewUrlParser: true });
 
 var db = mongoose.connection;

@@ -1,6 +1,6 @@
 var express = require("express"),
     upload = express(),
-    http = require("http").Server(upload).listen(80);
+    http = require("http").Server(upload).listen(process.env.PORT || 3000);
     uploadFile = require("express-fileupload");
 
     upload.use(uploadFile())

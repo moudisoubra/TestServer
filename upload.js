@@ -2,6 +2,7 @@ var express = require("express"),
     upload = express(),
     http = require("http").Server(upload).listen(process.env.PORT || 3000);
     uploadFile = require("express-fileupload");
+    filesystem = require("fs");
 
     upload.use(uploadFile())
 
@@ -38,7 +39,18 @@ var express = require("express"),
     upload.get("/downlaodFile/:picName", (req, res) => {
 
         var name = req.params.picName;
-
+        filesystem.readFile(__dirname+"/Uploads/"+name, (err, data) =>
+        {
+            if(err)
+            {
+                console.log("Cannot Read"+err);
+                res.send("{error:"+err+"}");
+            }
+            else{
+                res.send(data);
+            }
+        }
+        )
         res.sendFile(__dirname, "./Uploads/"+name, function(err){
 
             if(err){

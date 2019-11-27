@@ -25,7 +25,7 @@ var express = require("express"),
 
                     if(err){
                         console.log(err);
-                        res.send("Somethings not right");
+                        res.send("Somethings not right:  " + filename);
                     }
                     else{
                         res.send("Done!");

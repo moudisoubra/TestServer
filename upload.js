@@ -7,7 +7,7 @@ var express = require("express"),
     upload.use(uploadFile())
 
     console.log("Upload Server Started!")
-
+    var fileNamePublic;
     upload.get("/uploadpage", function(req, res)
     {
         res.sendFile(__dirname+"/index.html");
@@ -20,6 +20,7 @@ var express = require("express"),
 
             var file = req.files.fileName,
                 filename = file.name;
+                fileNamePublic = filename;
                 
                 file.mv("./Uploads/" + filename, function(err){
 
@@ -43,8 +44,8 @@ var express = require("express"),
         {
             if(err)
             {
-                console.log("Cannot Read " + filename + +err);
-                res.send("{error: "  + filename + "/////////" +err+"}");
+                console.log("Cannot Read " + fileNamePublic + +err);
+                res.send("{error: "  + fileNamePublic + "/////////" +err+"}");
             }
             else{
                 res.send(data);

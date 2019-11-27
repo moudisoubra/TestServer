@@ -11,9 +11,6 @@
   },
   "dependencies": {
     "mongoose": "^5.6.9",
-    "restify": "8.3.3",
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "multer": "^1.2.0"
+    "restify": "8.3.3"
   }
 }

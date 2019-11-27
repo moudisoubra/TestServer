@@ -43,8 +43,8 @@ var express = require("express"),
         {
             if(err)
             {
-                console.log("Cannot Read"+err);
-                res.send("{error:"+err+"}");
+                console.log("Cannot Read " + filename + +err);
+                res.send("{error: "  + filename + "/////////" +err+"}");
             }
             else{
                 res.send(data);

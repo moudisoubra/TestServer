@@ -39,7 +39,7 @@ var express = require("express"),
     upload.get("/downlaodFile/:picName", (req, res) => {
 
         var name = req.params.picName;
-        filesystem.readFile(__dirname+"/Uploads/"+name, (err, data) =>
+        filesystem.readFile("./Uploads/"+name, (err, data) =>
         {
             if(err)
             {

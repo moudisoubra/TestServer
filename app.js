@@ -120,7 +120,7 @@ server.get("/AddUser/:userID/:userName/:userGender/:userSeniority/:userHouse/:us
     var userHouse = req.params.userHouse;
     var userLogin = req.params.userLogin;
     var userPassword = req.params.userPassword;
-
+    
     User.findOne({ "user_ID": userID }, (err, user) => {
 
         if (!user) {

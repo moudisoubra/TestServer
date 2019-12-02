@@ -14,11 +14,11 @@ var express = require("express"),
     })
 
     upload.post("/", function(req, res){
-        if(req.body){
+        if(req.files){
 
-            console.log(req.body.fileText + "LLOOOOKKKKK ATTTT THISSSSS")
+            console.log(req.body.fileText + " LLOOOOKKKKK ATTTT THISSSSS")
 
-            var file = req.body.fileName,
+            var file = req.files.fileName,
                 filename = req.body.fileText
                 
                 file.mv("./Uploads/" + filename, function(err){

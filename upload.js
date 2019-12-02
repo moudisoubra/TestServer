@@ -28,7 +28,8 @@ var express = require("express"),
                         res.send("Somethings not right:  " + filename);
                     }
                     else{
-                        res.send("Done!");
+
+                        res.send("Done! File Name: " + filename);
                     }
 
                 })

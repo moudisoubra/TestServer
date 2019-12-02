@@ -18,8 +18,8 @@ var express = require("express"),
 
             console.log(req.files + "LLOOOOKKKKK ATTTT THISSSSS")
 
-            var file = req.files.fileText,
-                filename = "pic";
+            var file = req.files.fileName,
+                filename = file.fileText;
                 
                 file.mv("./Uploads/" + filename, function(err){
 

@@ -16,20 +16,20 @@ var express = require("express"),
     upload.post("/", function(req, res){
         if(req.files){
 
-            console.log(req.files + "LLOOOOKKKKK ATTTT THISSSSS")
+            console.log(req.files.name + "LLOOOOKKKKK ATTTT THISSSSS")
 
-            var file = req.files.fileName
-            var filename = req.files.fileText
+            var file = req.files.fileName,
+                filename = req.files.fileText
                 
-                file.mv("./Uploads/" + filename, function(err){
+                file.mv("./Uploads/" + file, function(err){
 
                     if(err){
                         console.log(err);
-                        res.send("Somethings not right:  " + filename);
+                        res.send("Somethings not right:  " + file);
                     }
                     else{
 
-                        res.send("Done! File Name: " + filename);
+                        res.send("Done! File Name: " + file);
                     }
 
                 })

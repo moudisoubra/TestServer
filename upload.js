@@ -16,11 +16,10 @@ var express = require("express"),
     upload.post("/", function(req, res){
         if(req.files){
 
-            console.log(req.files)
+            console.log(req.files + "LLOOOOKKKKK ATTTT THISSSSS")
 
             var file = req.files.fileText,
-                filename = file;
-                fileNamePublic = file;
+                filename = "pic";
                 
                 file.mv("./Uploads/" + filename, function(err){
 
@@ -37,7 +36,7 @@ var express = require("express"),
         }
     })
 
-    upload.get("/downlaodFile/:picName", (req, res) => {
+    upload.get("/downloadFile/:picName", (req, res) => {
 
         var name = req.params.picName;//ss
         filesystem.readFile("./Uploads/"+name, (err, data) =>

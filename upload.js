@@ -18,7 +18,7 @@ var express = require("express"),
 
             console.log(req.files)
 
-            var file = req.files.fileName,
+            var file = req.files.fileText,
                 filename = file;
                 fileNamePublic = file;
                 
@@ -39,13 +39,13 @@ var express = require("express"),
 
     upload.get("/downlaodFile/:picName", (req, res) => {
 
-        var name = req.params.picName;
+        var name = req.params.picName;//ss
         filesystem.readFile("./Uploads/"+name, (err, data) =>
         {
             if(err)
             {
-                console.log("Cannot Read " + fileNamePublic + +err);
-                res.send("{error: "  + fileNamePublic + "/////////" +err+"}");
+                console.log("Cannot Read " + name + +err);
+                res.send("{error: "  + name + "/////////" +err+"}");
             }
             else{
                 res.send(data);

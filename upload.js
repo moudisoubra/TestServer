@@ -48,7 +48,7 @@ var express = require("express"),
                 res.send("{error: "  + name + "/////////" +err+"}");
             }
             else{
-                res.send("./Uploads/"+name);
+                res.send(data);
             }
         }
         )

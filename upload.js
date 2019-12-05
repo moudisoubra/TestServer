@@ -5,12 +5,19 @@ var express = require("express"),
     filesystem = require("fs");
 
     upload.use(uploadFile())
+    upload.use(Express.static(__dirname+'/Uploads'));
 
     console.log("Upload Server Started!")
     var fileNamePublic;
     upload.get("/uploadpage", function(req, res)
     {
         res.sendFile(__dirname+"/index.html");
+    })
+
+    upload.get("/showPic", function(req, res)
+    {
+        res.type('text/html');
+        res.send(' <h1> This is the PDF </h1> <img class="logo" src="/Uploads/'+1+'.png" alt="PDF" id="kk"/>');
     })
 
     upload.post("/", function(req, res){
@@ -39,7 +46,7 @@ var express = require("express"),
 
     upload.get("/downloadFile/:picName", (req, res) => {
 
-        var name = req.params.picName;//ss
+        var name = req.params.picName;
         filesystem.readFile("./Uploads/"+name, (err, data) =>
         {
             if(err)
@@ -48,7 +55,7 @@ var express = require("express"),
                 res.send("{error: "  + name + "/////////" +err+"}");
             }
             else{
-                res.send(__dirname/Uploads/name);
+                res.send(data);
             }
         }
         )

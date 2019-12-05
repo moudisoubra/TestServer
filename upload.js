@@ -30,7 +30,7 @@ function  Uploader(upload,express){
     upload.post("/", function(req, res){
         if(req.files){
 
-            console.log(req.body.fileText + " LLOOOOKKKKK ATTTT THISSSSS")
+            //console.log(req.body.fileText + " LLOOOOKKKKK ATTTT THISSSSS")
 
             var file = req.files.fileName,
                 filename = req.files.fileName.name

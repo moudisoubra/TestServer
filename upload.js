@@ -24,17 +24,35 @@ function  Uploader(upload,express, mongoose){
 
     upload.get("/uploadpage", function(req, res)
     {
+
         res.sendFile(__dirname+"/index.html");
     })
 
-    upload.get("/showPic", function(req, res)
+    upload.get("/showPic/:picName", function(req, res)
     {
         var name = req.params.picName;
         res.type('text/html');
+        pdfs.findOne({ "pdfName": name }, (err, user) => {
+
+            if (!user) 
+            {
+                console.log("Didnt Find that PDF");
+    
+                var string = "Didnt Find that PDF";
+    
+                res.send(string.toString());
+            }
+            else 
+            {
+                var mainPart = '<iframe src="https://drive.google.com/viewerng/viewer?embedded=true&url=https://testserversoubra.herokuapp.com/';
+                var endPart = '" width="500" height="375" id = "resize"> </iframe> <script> var e=document.getElementById("resize");e.setAttribute("width",800);e.setAttribute("width",window.innerWidth);e.setAttribute("height", window.innerHeight);</script>';
         
+                res.send(' <h1> This is the PDF </h1>' + mainPart + name + endPart + "'");
+                console.log(' <h1> This is the PDF </h1>' + mainPart + name + endPart + "'");
+            }
+        });
         //res.send(' <h1> This is the PDF </h1> <embed src="/'+name+'" width ="200" Height="200"/>');
 
-        res.send(' <h1> This is the PDF </h1> <iframe src="https://drive.google.com/viewerng/viewer?embedded=true&url=https://testserversoubra.herokuapp.com/sample.pdf" width="500" height="375" id = "resize"> </iframe> <script> var e=document.getElementById("resize");e.setAttribute("width",800);e.setAttribute("width",window.innerWidth);e.setAttribute("height", window.innerHeight);</script>');
     })
 
     upload.get('/PDF/:pdfName', function(req, res){
@@ -65,7 +83,21 @@ function  Uploader(upload,express, mongoose){
                     }
                     else{
 
-                        res.send("Done! File Name: " + filename);
+                        
+                        var fullName = filename.name
+                        var splitName = fullName.split(".");
+                        var firstName = splitName[0];
+                        
+                        console.log("This is the full name:     " + fullName);
+                        Console.log("This is the first Name:    " + firstName);
+                        
+                        res.send("Done! File Name: " + filename + "This is the full name:     " + fullName + "This is the first Name:    " + firstName);
+
+                        newPDF = new pdfs({
+
+                            "pdfName": firstName,
+                            "pdfFullName": fullName
+                        });
                     }
 
                 })

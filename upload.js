@@ -91,7 +91,7 @@ function  Uploader(upload,express, mongoose){
                         console.log("This is the full name:     " + fullName);
                         console.log("This is the first Name:    " + firstName);
                         
-                        res.send("Done! File Name: " + filename + "This is the full name:     " + fullName + "This is the first Name:    " + firstName);
+                        res.send("Done! File Name: " + filename + "--------- This is the full name:     " + fullName + " -------------- This is the first Name:    " + firstName);
 
                         newPDF = new pdfs({
 

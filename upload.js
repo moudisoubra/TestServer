@@ -34,7 +34,7 @@ function  Uploader(upload,express){
         
         //res.send(' <h1> This is the PDF </h1> <embed src="/'+name+'" width ="200" Height="200"/>');
 
-        res.send(' <h1> This is the PDF </h1> <embed src="https://drive.google.com/viewerng/viewer?embedded=true&url=https://testserversoubra.herokuapp.com/Uploads/sample.pdf" width="500" height="375">');
+        res.send(' <h1> This is the PDF </h1> <embed src="https://drive.google.com/viewerng/viewer?embedded=true&url=https://testserversoubra.herokuapp.com/sample.pdf" width="500" height="375">');
     })
 
     upload.get('/PDF/:pdfName', function(req, res){

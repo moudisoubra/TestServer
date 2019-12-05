@@ -1,6 +1,6 @@
 
 
-function  Uploader(upload,express){
+function  Uploader(upload,express, mongoose){
     
     var 
 

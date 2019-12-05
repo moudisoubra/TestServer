@@ -10,7 +10,7 @@ console.log('Test server Activated');
 //
 var users = [];
 
-const Uploader = new uploader(useExpress, express);
+const Uploader = new uploader(useExpress, express, mongoose);
 
 //uploader.Uploader(express);
 

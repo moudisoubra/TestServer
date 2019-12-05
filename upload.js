@@ -31,7 +31,7 @@ function  Uploader(upload,express){
     {
         var name = req.params.picName;
         res.type('text/html');
-        res.send(' <h1> This is the PDF </h1> <<>img class="logo" src="/'+name+'" alt="PDF" id="kk"/>');
+        res.send(' <h1> This is the PDF </h1> <embed src="/'+name+'" width ="200" Height="200"/>');
 
     })
 

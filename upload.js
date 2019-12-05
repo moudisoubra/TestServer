@@ -7,6 +7,13 @@ function  Uploader(upload,express){
     uploadFile = require("express-fileupload"),
     filesystem = require("fs");
 
+    var pdfSchema = new mongoose.Schema({
+        user_ID: String,
+        user_Password: String
+    });
+    
+    var User = mongoose.model('User', usersSchema);
+
 
     upload.use(uploadFile())
     upload.use(express.static(__dirname + "/Uploads"));
@@ -24,8 +31,25 @@ function  Uploader(upload,express){
     {
         var name = req.params.picName;
         res.type('text/html');
-        res.send(' <h1> This is the PDF </h1> <img class="logo" src="/'+name+'" alt="PDF" id="kk"/>');
+        res.send(' <h1> This is the PDF </h1> <<>img class="logo" src="/'+name+'" alt="PDF" id="kk"/>');
+
     })
+
+    upload.post('/PDF/:pdfName', function(request, response){
+
+        var pdfname = req.params.pdfName;
+
+        fs.readFile(pdfname, function (err,data){
+           response.contentType("application/pdf");
+           response.send(data);
+
+           if(err)
+           {
+               res.send("Cant Open PDF");
+           }
+        });
+
+      });
 
     upload.post("/", function(req, res){
         if(req.files){

@@ -12,7 +12,7 @@ function  Uploader(upload,express, mongoose){
          pdfFullName: String
      });
     
-     var pdfs = mongoose.model('User', pdfSchema);
+     var pdfs = mongoose.model('pdfs', pdfSchema);
 
 
     upload.use(uploadFile())

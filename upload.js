@@ -27,12 +27,14 @@ function  Uploader(upload,express){
         res.sendFile(__dirname+"/index.html");
     })
 
-    upload.get("/showPic/:picName", function(req, res)
+    upload.get("/showPic", function(req, res)
     {
         var name = req.params.picName;
         res.type('text/html');
-        res.send(' <h1> This is the PDF </h1> <embed src="/'+name+'" width ="200" Height="200"/>');
+        
+        //res.send(' <h1> This is the PDF </h1> <embed src="/'+name+'" width ="200" Height="200"/>');
 
+        res.send(' <h1> This is the PDF </h1> <embed src="https://drive.google.com/viewerng/viewer?embedded=true&url=https://testserversoubra.herokuapp.com/Uploads/sample.pdf" width="500" height="375">');
     })
 
     upload.get('/PDF/:pdfName', function(req, res){

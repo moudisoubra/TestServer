@@ -35,7 +35,7 @@ function  Uploader(upload,express){
 
     })
 
-    upload.get('/PDF/:pdfName', function(request, response){
+    upload.get('/PDF/:pdfName', function(req, res){
 
         var pdf = req.params.pdfName;
 

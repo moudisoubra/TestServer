@@ -38,8 +38,8 @@ function  Uploader(upload,express){
     upload.get('/PDF/:pdfName', function(req, res){
 
         var pdf = req.params.pdfName;
-
-        fs.readFile(pdf, function (err,data){
+        
+        filesystem.readFile(pdf, function (err,data){
            res.contentType("application/pdf");
            res.send(data);
 

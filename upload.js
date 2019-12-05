@@ -84,7 +84,7 @@ function  Uploader(upload,express, mongoose){
                     else{
 
                         
-                        var fullName = filename.name
+                        var fullName = filename;
                         var splitName = fullName.split(".");
                         var firstName = splitName[0];
                         

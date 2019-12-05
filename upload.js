@@ -42,11 +42,6 @@ function  Uploader(upload,express){
         filesystem.readFile(pdf, function (err,data){
            res.contentType("application/pdf");
            res.send(data);
-
-           if(err)
-           {
-               res.send("Cant Open PDF");
-           }
         });
 
     });

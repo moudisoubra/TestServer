@@ -7,12 +7,12 @@ function  Uploader(upload,express){
     uploadFile = require("express-fileupload"),
     filesystem = require("fs");
 
-    var pdfSchema = new mongoose.Schema({
-        user_ID: String,
-        user_Password: String
-    });
+    // var pdfSchema = new mongoose.Schema({
+    //     user_ID: String,
+    //     user_Password: String
+    // });
     
-    var User = mongoose.model('User', usersSchema);
+    // var User = mongoose.model('User', usersSchema);
 
 
     upload.use(uploadFile())

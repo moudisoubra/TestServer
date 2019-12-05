@@ -39,7 +39,7 @@ function  Uploader(upload,express){
 
         var pdf = req.params.pdfName;
         
-        filesystem.readFile(pdf, function (err,data){
+        filesystem.readFile("./Uploads/" + pdf, function (err,data){
            res.contentType("application/pdf");
            res.send(data);
         });

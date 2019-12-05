@@ -4,7 +4,7 @@ function  Uploader(upload,express){
     
     var 
 
-    uploadFile = require("express-fileupload");
+    uploadFile = require("express-fileupload"),
     filesystem = require("fs");
 
 

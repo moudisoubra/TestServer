@@ -1,18 +1,9 @@
 'use strict';
-var restify = require("restify");
-var fs = require("fs");
-var uploader = require("./upload")
 var mongoose = require('mongoose');
-var uuid = require('uuid');
 var express = require('express');
+var uploader = require("./upload")
 var useExpress = express();
-var BP =  require('body-parser');
-var multer = require('multer');
-//var server = restify.createServer();
 
-var http = require("http").Server(express).listen(process.env.PORT || 3000);
-var uploadFile = require("express-fileupload");
-var filesystem = require("fs");
 
 console.log('Test server Activated');
 //

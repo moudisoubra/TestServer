@@ -37,11 +37,11 @@ function  Uploader(upload,express){
 
     upload.get('/PDF/:pdfName', function(request, response){
 
-        var pdfname = req.params.pdfName;
+        var pdf = req.params.pdfName;
 
-        fs.readFile(pdfname, function (err,data){
-           response.contentType("application/pdf");
-           response.send(data);
+        fs.readFile(pdf, function (err,data){
+           res.contentType("application/pdf");
+           res.send(data);
 
            if(err)
            {
@@ -49,7 +49,7 @@ function  Uploader(upload,express){
            }
         });
 
-      });
+    });
 
     upload.post("/", function(req, res){
         if(req.files){

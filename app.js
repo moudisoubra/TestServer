@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var express = require('express');
 var uploader = require("./upload")
 var useExpress = express();
-http = require("http").Server(useExpress).listen(process.env.PORT || 3000);
+var http = require("http").Server(useExpress).listen(process.env.PORT || 3000);
 
 
 console.log('Test server Activated');

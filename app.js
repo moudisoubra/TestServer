@@ -1,16 +1,26 @@
 'use strict';
 var restify = require("restify");
 var fs = require("fs");
+var uploader = require("./upload")
 var mongoose = require('mongoose');
 var uuid = require('uuid');
 var express = require('express');
+var useExpress = express();
 var BP =  require('body-parser');
 var multer = require('multer');
-var server = restify.createServer();
+//var server = restify.createServer();
+
+var http = require("http").Server(express).listen(process.env.PORT || 3000);
+var uploadFile = require("express-fileupload");
+var filesystem = require("fs");
 
 console.log('Test server Activated');
 //
 var users = [];
+
+const Uploader = new uploader(useExpress, express);
+
+//uploader.Uploader(express);
 
 var uristring =
     process.env.MONGODB_URI ||
@@ -37,14 +47,14 @@ var usersSchema = new mongoose.Schema({
 
 var User = mongoose.model('User', usersSchema);
 
-server.get("/wakeup", function (req, res, next) {
+useExpress.get("/wakeup", function (req, res) {
 
     var string = "Server is awake!";
 
     res.send(string.toString());
 });
 
-server.get("/FindUser/:userLogin", function (req, res, next) {
+useExpress.get("/FindUser/:userLogin", function (req, res) {
 
     var userLogin = req.params.userLogin;
 
@@ -69,7 +79,7 @@ server.get("/FindUser/:userLogin", function (req, res, next) {
     });
 });
 
-server.get("/Login/:userLogin/:userPassword", function (req, res, next)
+useExpress.get("/Login/:userLogin/:userPassword", function (req, res)
 {
 
     var userLogin = req.params.userLogin;
@@ -109,7 +119,7 @@ server.get("/Login/:userLogin/:userPassword", function (req, res, next)
     });
 });
 
-server.get("/AddUser/:userID/:userName/:userGender/:userSeniority/:userHouse/:userLogin/:userPassword", function (req, res, next) {
+useExpress.get("/AddUser/:userID/:userName/:userGender/:userSeniority/:userHouse/:userLogin/:userPassword", function (req, res) {
 
     //AddUser/1/Soubra/Male/Intern/1/Soubra/123
 
@@ -202,7 +212,7 @@ server.get("/AddUser/:userID/:userName/:userGender/:userSeniority/:userHouse/:us
 //     });
 // });
 
-server.get("/DeleteUser/:userID", function (req, res) { 
+useExpress.get("/DeleteUser/:userID", function (req, res) { 
     
     var userID = req.params.userID;
 
@@ -218,7 +228,7 @@ server.get("/DeleteUser/:userID", function (req, res) {
     });
 });
 
-server.get("/ClearAll", function (req, res) { //BIG RED BUTTON
+useExpress.get("/ClearAll", function (req, res) { //BIG RED BUTTON
 
     User.remove({}, function (err) {
         console.log('DataBase Wiped')
@@ -230,7 +240,7 @@ server.get("/ClearAll", function (req, res) { //BIG RED BUTTON
 
 });
 
-server.get("/SortByID", function (req, res) {
+useExpress.get("/SortByID", function (req, res) {
 
     User.find({}).sort({ user_ID: 1 }).exec(function (err, ID)
     {
@@ -243,7 +253,7 @@ server.get("/SortByID", function (req, res) {
 
 });
 
-server.get("/listAllMongo", function (req, res) { //LISTS ALL PLAYERS IN THE DATABASE
+useExpress.get("/listAllMongo", function (req, res) { //LISTS ALL PLAYERS IN THE DATABASE
     User.find(function (err, user) {
 
         if (err) return console.error(err);
@@ -254,8 +264,8 @@ server.get("/listAllMongo", function (req, res) { //LISTS ALL PLAYERS IN THE DAT
     });
 });
 
-server.listen(process.env.PORT || 3000, function () { /// Heroku Port process.env.PORT
+// useExpress.listen(process.env.PORT || 3000, function () { /// Heroku Port process.env.PORT
 
-    //console.log(process.env.PORT);
+//     //console.log(process.env.PORT);
 
-});
+// });

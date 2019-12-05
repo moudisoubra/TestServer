@@ -1,23 +1,30 @@
-var express = require("express"),
-    upload = express(),
-    http = require("http").Server(upload).listen(process.env.PORT || 3000);
+
+
+function  Uploader(upload,express){
+    
+    var 
+
     uploadFile = require("express-fileupload");
     filesystem = require("fs");
 
+
     upload.use(uploadFile())
-    upload.use(Express.static(__dirname+'/Uploads'));
+    upload.use(express.static(__dirname + "/Uploads"));
 
     console.log("Upload Server Started!")
+
     var fileNamePublic;
+
     upload.get("/uploadpage", function(req, res)
     {
         res.sendFile(__dirname+"/index.html");
     })
 
-    upload.get("/showPic", function(req, res)
+    upload.get("/showPic/:picName", function(req, res)
     {
+        var name = req.params.picName;
         res.type('text/html');
-        res.send(' <h1> This is the PDF </h1> <img class="logo" src="/Uploads/'+1+'.png" alt="PDF" id="kk"/>');
+        res.send(' <h1> This is the PDF </h1> <img class="logo" src="/'+name+'" alt="PDF" id="kk"/>');
     })
 
     upload.post("/", function(req, res){
@@ -26,8 +33,9 @@ var express = require("express"),
             console.log(req.body.fileText + " LLOOOOKKKKK ATTTT THISSSSS")
 
             var file = req.files.fileName,
-                filename = req.body.fileText
-                
+                filename = req.files.fileName.name
+                console.log(req.files.fileName.name + "  THIS IS THE FILE NAME")
+
                 file.mv("./Uploads/" + filename, function(err){
 
                     if(err){
@@ -69,5 +77,6 @@ var express = require("express"),
             }
         })
 
-        //res.sendFile(path.join(__dirname, "./Uploads/pic.jpg"));
       });
+    }
+    module.exports = Uploader;

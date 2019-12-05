@@ -238,6 +238,8 @@ useExpress.get("/ClearAll", function (req, res) { //BIG RED BUTTON
         res.send(string.toString());
     });
 
+    res.send("HI");
+
 });
 
 useExpress.get("/SortByID", function (req, res) {

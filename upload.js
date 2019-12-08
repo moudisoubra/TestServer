@@ -1,6 +1,6 @@
 
 
-function  Uploader(upload,express, mongoose){
+function  Uploader(upload,express,mongoose){
     
     var 
 
@@ -132,4 +132,16 @@ function  Uploader(upload,express, mongoose){
 
       });
     }
+
+    useExpress.get("/listAllPDFs", function (req, res) { //LISTS ALL PDFS IN THE DATABASE
+
+        pdfs.find(function (err, pdf) {
+    
+            if (err) return console.error(err);
+    
+            console.log(pdf);
+    
+            res.send({ pdf });
+        });
+    });
     module.exports = Uploader;

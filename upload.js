@@ -24,7 +24,6 @@ function  Uploader(upload,express,mongoose){
 
     upload.get("/uploadpage", function(req, res)
     {
-
         res.sendFile(__dirname+"/index.html");
     })
 
@@ -176,8 +175,22 @@ function  Uploader(upload,express,mongoose){
             res.send(string.toString());
         });
     
-        res.send("HI");
+    });
+
+    useExpress.get("/DeletePDF/:pdfName", function (req, res) { 
     
+        var pdfName = req.params.pdfName;
+    
+        pdfs.findOneAndDelete({ "pdfName": pdfName }, (err, pdf) => { 
+    
+            if (!pdf) { 
+                console.log("Player already deleted!");
+            }
+            else {
+                console.log("Found player: " + pdf);
+                res.send({ pdf });
+            }
+        });
     });
 }
     module.exports = Uploader;

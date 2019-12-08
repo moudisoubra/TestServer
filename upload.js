@@ -93,19 +93,39 @@ function  Uploader(upload,express,mongoose){
                         
                         res.send("Done! File Name: " + filename + "--------- This is the full name:     " + fullName + " -------------- This is the first Name:    " + firstName);
 
-                        var newPDF = new pdfs({
+                        pdfs.findOne({ "pdfName": firstName }, (err, pdf) => {
 
-                            "pdfName": firstName,
-                            "pdfFullName": fullName
-                        });
+                            if (!pdf) 
+                            {
+                    
+                                var newPDF = new pdfs({
 
-                        newPDF.save(function (err) { if (err) console.log('Error on save!') });
+                                    "pdfName": firstName,
+                                    "pdfFullName": fullName
+                                });
+                                
+                                newPDF.save(function (err) { if (err) console.log('Error on save!') });
+                            }
+                            else 
+                            {
+                    
+                                pdf = new pdfs({
+                    
+                                    "pdfName": firstName,
+                                    "pdfFullName": fullName
+                                });
+                    
+                                console.log("PDF Found: " + pdf);
+                    
+                            }
+                        });    
                     }
+                
 
-                })
+            });
         
         }
-    })
+    });
 
     upload.get("/downloadFile/:picName", (req, res) => {
 
@@ -144,6 +164,20 @@ function  Uploader(upload,express,mongoose){
             
             res.send({ pdf });
         });
+    });
+
+    upload.get("/ClearAllPDF", function (req, res) { //BIG RED BUTTON
+
+        pdfs.remove({}, function (err) {
+            console.log('PDF DataBase Wiped')
+    
+            var string = "PDF DataBase Wiped";
+        
+            res.send(string.toString());
+        });
+    
+        res.send("HI");
+    
     });
 }
     module.exports = Uploader;

@@ -32,9 +32,9 @@ function  Uploader(upload,express,mongoose){
     {
         var name = req.params.picName;
         res.type('text/html');
-        pdfs.findOne({ "pdfName": name }, (err, user) => {
+        pdfs.findOne({ "pdfName": name }, (err, pdf) => {
 
-            if (!user) 
+            if (!pdf) 
             {
                 console.log("Didnt Find that PDF");
     
@@ -47,8 +47,8 @@ function  Uploader(upload,express,mongoose){
                 var mainPart = '<iframe src="https://drive.google.com/viewerng/viewer?embedded=true&url=https://testserversoubra.herokuapp.com/';
                 var endPart = '" width="500" height="375" id = "resize"> </iframe> <script> var e=document.getElementById("resize");e.setAttribute("width",800);e.setAttribute("width",window.innerWidth);e.setAttribute("height", window.innerHeight);</script>';
         
-                res.send(' <h1> This is the PDF </h1>' + mainPart + name + endPart + "'");
-                console.log(' <h1> This is the PDF </h1>' + mainPart + name + endPart + "'");
+                res.send(' <h1> This is the PDF </h1>' + mainPart + pdf.pdfFullName + endPart + "'");
+                console.log(' <h1> This is the PDF </h1>' + mainPart + pdf.pdfFullName + endPart + "'");
             }
         });
         //res.send(' <h1> This is the PDF </h1> <embed src="/'+name+'" width ="200" Height="200"/>');

@@ -133,7 +133,7 @@ function  Uploader(upload,express,mongoose){
       });
     }
 
-    useExpress.get("/listAllPDFs", function (req, res) { //LISTS ALL PDFS IN THE DATABASE
+    upload.get("/listAllPDFs", function (req, res) { //LISTS ALL PDFS IN THE DATABASE
 
         pdfs.find(function (err, pdf) {
     

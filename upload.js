@@ -12,7 +12,7 @@ function  Uploader(upload,express,mongoose){
          pdfFullName: String
      });
     
-     var pdfs = mongoose.model('pdfs', pdfSchema);
+    var pdfs = mongoose.model('pdfs', pdfSchema);
 
 
     upload.use(uploadFile())
@@ -46,24 +46,13 @@ function  Uploader(upload,express,mongoose){
                 var mainPart = '<iframe src="https://drive.google.com/viewerng/viewer?embedded=true&url=https://testserversoubra.herokuapp.com/';
                 var endPart = '" width="500" height="375" id = "resize"> </iframe> <script> var e=document.getElementById("resize");e.setAttribute("width",800);e.setAttribute("width",window.innerWidth);e.setAttribute("height", window.innerHeight);</script>';
         
-                res.send(' <h1> This is the PDF </h1>' + mainPart + pdf.pdfFullName + endPart + "'");
-                console.log(' <h1> This is the PDF </h1>' + mainPart + pdf.pdfFullName + endPart + "'");
+                res.send(mainPart + pdf.pdfFullName + endPart + "'");
+                console.log(mainPart + pdf.pdfFullName + endPart + "'");
             }
         });
         //res.send(' <h1> This is the PDF </h1> <embed src="/'+name+'" width ="200" Height="200"/>');
 
     })
-
-    upload.get('/PDF/:pdfName', function(req, res){
-
-        var pdf = req.params.pdfName;
-        
-        filesystem.readFile("./Uploads/" + pdf, function (err,data){
-           res.contentType("application/pdf");
-           res.send(data);
-        });
-
-    });
 
     upload.post("/", function(req, res){
         if(req.files){

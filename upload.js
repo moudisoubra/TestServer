@@ -131,17 +131,17 @@ function  Uploader(upload,express,mongoose){
         })
 
       });
-    }
-
-    upload.get("/listAllPDFs", function (req, res) { //LISTS ALL PDFS IN THE DATABASE
-
+      
+      upload.get("/listAllPDFs", function (req, res) { //LISTS ALL PDFS IN THE DATABASE
+        
         pdfs.find(function (err, pdf) {
-    
+            
             if (err) return console.error(err);
-    
+            
             console.log(pdf);
-    
+            
             res.send({ pdf });
         });
     });
+}
     module.exports = Uploader;

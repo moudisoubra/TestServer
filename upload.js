@@ -177,7 +177,7 @@ function  Uploader(upload,express,mongoose){
     
     });
 
-    useExpress.get("/DeletePDF/:pdfName", function (req, res) { 
+    upload.get("/DeletePDF/:pdfName", function (req, res) { 
     
         var pdfName = req.params.pdfName;
     

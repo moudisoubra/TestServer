@@ -93,11 +93,13 @@ function  Uploader(upload,express,mongoose){
                         
                         res.send("Done! File Name: " + filename + "--------- This is the full name:     " + fullName + " -------------- This is the first Name:    " + firstName);
 
-                        newPDF = new pdfs({
+                        var newPDF = new pdfs({
 
                             "pdfName": firstName,
                             "pdfFullName": fullName
                         });
+
+                        newPDF.save(function (err) { if (err) console.log('Error on save!') });
                     }
 
                 })

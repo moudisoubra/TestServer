@@ -115,6 +115,10 @@ function  Uploader(upload,express,mongoose){
         }
     });
 
+    setInterval(function() {
+        console.log("KEEPING IT AWAKE");
+    }, 1000); // every 5 minutes (300000)
+
     upload.get("/downloadFile/:picName", (req, res) => {
 
         var name = req.params.picName;

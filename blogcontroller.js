@@ -41,7 +41,7 @@ function Blogger(blog, mongoose)
             
             console.log(blog);
             
-            res.send( blog );
+            res.send({ blog });
         });
     });
 

@@ -5,9 +5,8 @@ function Blogger(blog, mongoose)
     var blogSchema = new mongoose.Schema({
         userID: String,
         userName: String,
-        blogContent: String
-
-        
+        blogContent: String,
+        blogID: String
     });
 
     var blogModel = mongoose.model('blogs', blogSchema);
@@ -28,6 +27,7 @@ function Blogger(blog, mongoose)
             "blogContent": content
         });
         
+        post.blogID = post._id;
         post.save(function (err) { if (err) console.log('Error on save!') });
 
         res.send({post});

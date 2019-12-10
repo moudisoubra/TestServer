@@ -4,6 +4,7 @@ function Blogger(blog, mongoose)
 {
     var blogSchema = new mongoose.Schema({
         userID: String,
+        userName: String,
         blogContent: String
     });
 
@@ -11,19 +12,23 @@ function Blogger(blog, mongoose)
 
     console.log("Blogger Server Started");
 
-    blog.get("/CreateBlogPost/:userID/:content", function(req, res)
+    blog.get("/CreateBlogPost/:userID/:userName/:content", function(req, res)
     {
         var userID = req.params.userID;
+        var userName = req.params.userName;
         var content = req.params.content;
 
 
         var post = new blogModel({
 
             "userID": userID,
+            "userName": userName,
             "blogContent": content
         });
         
         post.save(function (err) { if (err) console.log('Error on save!') });
+
+        res.send({post});
     });
 
     blog.get("/listAllBlogPosts", function (req, res) { //LISTS ALL PDFS IN THE DATABASE

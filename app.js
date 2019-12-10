@@ -1,5 +1,4 @@
 'use strict';
-var newrelic = require('newrelic');
 var mongoose = require('mongoose');
 var express = require('express');
 var uploader = require("./upload")
@@ -8,7 +7,6 @@ var http = require("http").Server(useExpress).listen(process.env.PORT || 3000);
 
 
 console.log('Test server Activated');
-console.log('New Relic: ' + newrelic);
 //
 var users = [];
 

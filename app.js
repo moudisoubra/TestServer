@@ -41,7 +41,7 @@ db.once('open', function () {
 //     }, 10000);
 // }
 
-wakeupFunction(wait10sec);
+//wakeupFunction(wait10sec);
 
 var usersSchema = new mongoose.Schema({
     user_ID: String,

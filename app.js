@@ -29,6 +29,14 @@ db.once('open', function () {
     console.log("MongoDB online!");
 });
 
+
+function wait10sec(){
+    setTimeout(function(){
+        console.log("AWAKE");
+    }, 10000);
+
+
+
 var usersSchema = new mongoose.Schema({
     user_ID: String,
     user_Password: String,

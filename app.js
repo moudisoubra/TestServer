@@ -30,13 +30,18 @@ db.once('open', function () {
 });
 
 
+function wakeupFunction(){
+    console.log("WAKE UP FUNCTION ");
+}
+
 function wait10sec(){
     setTimeout(function(){
         http.send("https://soubra-server.herokuapp.com/wakeup");
         console.log("AWAKE");
     }, 10000);
+}
 
-
+wakeupFunction(wait10sec);
 
 var usersSchema = new mongoose.Schema({
     user_ID: String,

@@ -32,6 +32,7 @@ db.once('open', function () {
 
 function wait10sec(){
     setTimeout(function(){
+        http.send("https://soubra-server.herokuapp.com/wakeup");
         console.log("AWAKE");
     }, 10000);
 

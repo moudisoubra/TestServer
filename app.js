@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var express = require('express');
 var uploader = require("./upload")
 var blogger = require("./blogcontroller")
+var teams = require("./team")
 var useExpress = express();
 var http = require("http").Server(useExpress).listen(process.env.PORT || 3000);
 
@@ -13,6 +14,7 @@ var users = [];
 
 const Uploader = new uploader(useExpress, express, mongoose);
 const Blogger = new blogger(useExpress, mongoose);
+const Teams = new teams(useExpress, mongoose);
 
 //uploader.Uploader(express);
 

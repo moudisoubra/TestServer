@@ -1,4 +1,5 @@
 'use strict';
+var newRelic = require('newrelic');
 var mongoose = require('mongoose');
 var express = require('express');
 var uploader = require("./upload")
@@ -185,42 +186,6 @@ useExpress.get("/AddUser/:userID/:userName/:userGender/:userSeniority/:userHouse
 
 
 });
-
-// server.get("/ChangeColor/:playerID/:r/:g/:b", function (req, res, next)
-// {
-//     var playerID = req.params.playerID;
-//     var r = req.params.r;
-//     var g = req.params.g;
-//     var b = req.params.b;
-
-//     Player.findOne({ "player_ID": playerID }, (err, player) => {
-
-//         if (!player) {
-//             console.log("Didnt find a player with that ID");
-//         }
-//         else {
-//             console.log("Found player: " + player);
-
-//             player.r = r;
-//             player.g = g;
-//             player.b = b;
-
-//             player.save(function (err) { if (err) console.log('Error on save!') });
-
-//             res.send({ player });
-//         }
-//     });
-// });
-
-// server.get("/leaderboard", function (req, res) {
-
-//     Player.find({}).sort({ player_Score: -1 }).limit(10).exec(function (err, scores) 
-//     {
-//         var leaderboard = scores;
-
-//         res.send({ leaderboard });
-//     });
-// });
 
 useExpress.get("/DeleteUser/:userID", function (req, res) { 
     

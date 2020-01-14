@@ -1,5 +1,4 @@
 'use strict';
-var newRelic = require('newrelic');
 var mongoose = require('mongoose');
 var express = require('express');
 var uploader = require("./upload")

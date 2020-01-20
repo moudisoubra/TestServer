@@ -234,6 +234,12 @@ useExpress.get("/userPage", function(req, res)
     res.sendFile(__dirname+"/createUser.html");
 });
 
+useExpress.get("/mainPage", function(req, res)
+{
+    res.sendFile(__dirname+"/MainPage.html");
+});
+
+
 useExpress.post("/getUserInfo", function(req, res)
 {
     var userID = req.body.userID;

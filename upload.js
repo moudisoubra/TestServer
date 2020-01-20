@@ -27,6 +27,7 @@ function  Uploader(upload,express,mongoose){
         res.sendFile(__dirname+"/index.html");
     })
 
+
     upload.get("/showPic/:picName", function(req, res)
     {
         var name = req.params.picName;

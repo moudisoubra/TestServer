@@ -3,7 +3,7 @@ function TeamPointController(teams, mongoose)
     var teamSchema = new mongoose.Schema({
         teamName: String,
         teamMembersCount: Number,
-        teamPoint: Number
+        teamPoint: Number   
     });
 
     var teamModel = mongoose.model('team', teamSchema);

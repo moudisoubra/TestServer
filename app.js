@@ -4,20 +4,19 @@ var express = require('express');
 var uploader = require("./upload")
 var blogger = require("./blogcontroller")
 var teams = require("./team")
+var sorts = require("./sort")
 var useExpress = express();
+var filesystem = require("fs");
 var http = require("http").Server(useExpress).listen(process.env.PORT || 3000);
 
-
-console.log('Test server Activated');
-//
 var users = [];
 
 const Uploader = new uploader(useExpress, express, mongoose);
 const Blogger = new blogger(useExpress, mongoose);
 const Teams = new teams(useExpress, mongoose);
+const Sorts = new sorts(useExpress, mongoose, Teams);
 
-//uploader.Uploader(express);
-
+useExpress.use('/static', express.static('public'));
 var uristring =
     process.env.MONGODB_URI ||
     process.env.MONGOHQ_URL ||
@@ -32,18 +31,6 @@ db.once('open', function () {
 });
 
 
-// function wakeupFunction(){
-//     console.log("WAKE UP FUNCTION ");
-// }
-
-// function wait10sec(){
-//     setTimeout(function(){
-//         http.send("https://soubra-server.herokuapp.com/wakeup");
-//         console.log("AWAKE");
-//     }, 10000);
-// }
-
-//wakeupFunction(wait10sec);
 
 var usersSchema = new mongoose.Schema({
     user_ID: String,
@@ -132,6 +119,7 @@ useExpress.get("/Login/:userLogin/:userPassword", function (req, res)
 useExpress.get("/AddUser/:userID/:userName/:userGender/:userSeniority/:userHouse/:userLogin/:userPassword", function (req, res) {
 
     //AddUser/1/Soubra/Male/Intern/1/Soubra/123
+    // Red = 0, Blue = 1, Green = 2, Purple = 3.
 
     var userID = req.params.userID;
     var userName = req.params.userName;
@@ -143,7 +131,8 @@ useExpress.get("/AddUser/:userID/:userName/:userGender/:userSeniority/:userHouse
     
     User.findOne({ "user_ID": userID }, (err, user) => {
 
-        if (!user) {
+        if (!user) 
+        {
 
             console.log("Didnt find");
 
@@ -238,6 +227,24 @@ useExpress.get("/listAllMongo", function (req, res) { //LISTS ALL PLAYERS IN THE
 
         res.send({ user });
     });
+});
+
+useExpress.get("/userPage", function(req, res)
+{
+    res.sendFile(__dirname+"/createUser.html");
+});
+
+useExpress.post("/getUserInfo", function(req, res)
+{
+    var userID = req.body.userID;
+    var userName = req.body.userName;
+    var userGender = req.body.userGender;
+    var userOccupation = req.body.userOccupation;
+    var userHouse = req.body.userHouse;
+    var userLogin = req.body.userLogin;
+    var userPassword = req.body.userPassword;
+
+    console.log(userID + " " + userName + " " + userGender + " " + userOccupation + " " + userHouse + " " + userLogin + " " + userPassword);
 });
 
 // useExpress.listen(process.env.PORT || 3000, function () { /// Heroku Port process.env.PORT

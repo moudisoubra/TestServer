@@ -270,7 +270,7 @@ useExpress.post("/getUserInfo", function(req, res)
             });
 
             console.log("Created: " + U);
-            res.send({ U });
+            res.sendFile(__dirname+"/userCreated.html");
 
             U.save(function (err) { if (err) console.log('Error on save!') });
         }
@@ -289,13 +289,13 @@ useExpress.post("/getUserInfo", function(req, res)
             });
 
             console.log("User Found: " + user);
-            res.send({ user });
+            res.sendFile(__dirname+"/userCreated.html");
 
         }
 
     });
 
-    res.sendFile(__dirname+"/userCreated.html");
+    
 });
 
 // useExpress.listen(process.env.PORT || 3000, function () { /// Heroku Port process.env.PORT

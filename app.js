@@ -245,12 +245,56 @@ useExpress.post("/getUserInfo", function(req, res)
     var userID = req.body.userID;
     var userName = req.body.userName;
     var userGender = req.body.userGender;
-    var userOccupation = req.body.userOccupation;
+    var userSeniority = req.body.userOccupation;
     var userHouse = req.body.userHouse;
     var userLogin = req.body.userLogin;
     var userPassword = req.body.userPassword;
 
-    console.log(userID + " " + userName + " " + userGender + " " + userOccupation + " " + userHouse + " " + userLogin + " " + userPassword);
+    console.log(userID + " " + userName + " " + userGender + " " + userSeniority + " " + userHouse + " " + userLogin + " " + userPassword);
+
+    User.findOne({ "user_ID": userID }, (err, user) => {
+
+        if (!user) 
+        {
+
+            console.log("Didnt find");
+
+            var U = new User({
+                "user_ID": userID,
+                "user_Name": userName,
+                "user_Gender": userGender,
+                "user_Seniority": userSeniority,
+                "user_House": userHouse,
+                "user_Login": userLogin,
+                "user_Password": userPassword
+            });
+
+            console.log("Created: " + U);
+            res.send({ U });
+
+            U.save(function (err) { if (err) console.log('Error on save!') });
+        }
+        else 
+        {
+
+            user = new User({
+
+                "user_ID": userID,
+                "user_Name": userName,
+                "user_Gender": userGender,
+                "user_Seniority": userSeniority,
+                "user_House": userHouse, 
+                "user_Login": userLogin,
+                "user_Password": userPassword
+            });
+
+            console.log("User Found: " + user);
+            res.send({ user });
+
+        }
+
+    });
+
     res.sendFile(__dirname+"/userCreated.html");
 });
 

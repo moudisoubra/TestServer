@@ -1,11 +1,28 @@
-<h1>
-    Upload PDF Here
-</h1>
-
-<form method = "post" enctype = "multipart/form-data" action="/">
-
-    <input type = "file" name = "fileName">
-    <input type = "submit" value="upload">
 
 
-</form>
+<head>
+    <title> Upload PDF!</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<div class="userForm">
+
+    <h1>
+         Upload PDF Here:
+    </h1>
+
+    <form method = "post" enctype = "multipart/form-data" action="/">
+
+        <div class="txtb">
+            <input type = "file" name = "fileName">
+        </div>
+
+    
+      <input class = "btn" type = "submit" value="Upload">
+    </form>
+
+    <form method = "get" enctype = "multipart/form-data" action="/mainPage">   
+        <input class = "btn" type = "submit" value="Main Page">
+    </form>
+
+</div>

@@ -5,6 +5,16 @@ body{
     background-size: cover;
 }
 
+.imageIcon{
+    width : 400px;
+    max-width: 400px;
+    background: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-25%, -175%);
+}
+
 .userForm{
     width : 400px;
     max-width: 400px;

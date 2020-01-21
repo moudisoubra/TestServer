@@ -1,76 +1,24 @@
-
 <head>
-    <title> Create User!</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
+        <title> User Created!</title>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
 
-<div class="userForm">
+    <div class="imageIcon">
     
-
-    <h1>
-    Create User!
-    </h1>
-
-    <form method = "post" enctype = "multipart/form-data" action="/getUserInfo">
-
-    <!-- /AddUser/:userID/:userName/:userGender/:userSeniority/:userHouse/:userLogin/:userPassword -->
-
-    <div class="txtb">
-        <label>User ID:</label>
-        <input type = "text" name = "userID" value = "" placeholder="Enter ID">
+        <img src="/static/Icon.png" alt="JA Icon" height="200" width="200">
     </div>
+    
+    <div class="userForm">
+    
+        <h1>
+             User Created!
+        </h1>
+        <form method = "get" enctype = "multipart/form-data" action="/userPage">   
+          <input class = "btn" type = "submit" value="Create Another User">
+        </form>
 
-    <div class="txtb">
-        <label>User Name:</label>
-        <input type = "text" name = "userName" value = "" placeholder="Enter Name">
+        <form method = "get" enctype = "multipart/form-data" action="/mainPage">   
+            <input class = "btn" type = "submit" value="Main Page">
+        </form>
+    
     </div>
-
-    <div class="txtb">
-        <label>User Gender:</label>
-        <select type = "text" placeholder = "Choose Gender" data-style="btn-info" name="userGender">
-
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-
-        </select>
-    </div>
-
-    <div class="txtb">
-        <label>User Occupation:</label>
-        <select type = "text" placeholder = "Choose Occupation" data-style="btn-info" name="userOccupation">
-
-            <option value="a">A</option>
-            <option value="b">B</option>
-            <option value="c">C</option>
-            <option value="d">D</option>
-            <option value="e">E</option>
-
-        </select>
-    </div>
-
-    <div class="txtb">
-        <label>User House:</label>
-        <select type = "text" placeholder = "Choose House" data-style="btn-info" name="userHouse">
-
-            <option value="0">Red</option>
-            <option value="1">Blue</option>
-            <option value="2">Green</option>
-            <option value="3">Purple</option>
-
-        </select>
-    </div>
-
-    <div class="txtb">
-        <label>User Login:</label>
-        <input type = "text" name = "userLogin" value = "" placeholder="Enter Login">
-    </div>
-
-    <div class="txtb">
-        <label>User Password:</label>
-        <input type = "text" name = "userPassword" value = "" placeholder="Enter Password">
-    </div>
-    <input class="btn" type = "submit" value="upload">
-
-    </form>
-
-</div>

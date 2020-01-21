@@ -251,6 +251,7 @@ useExpress.post("/getUserInfo", function(req, res)
     var userPassword = req.body.userPassword;
 
     console.log(userID + " " + userName + " " + userGender + " " + userOccupation + " " + userHouse + " " + userLogin + " " + userPassword);
+    res.sendFile(__dirname+"/createUser.html");
 });
 
 // useExpress.listen(process.env.PORT || 3000, function () { /// Heroku Port process.env.PORT

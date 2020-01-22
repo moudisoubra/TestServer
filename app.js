@@ -5,6 +5,7 @@ var uploader = require("./upload")
 var blogger = require("./blogcontroller")
 var teams = require("./team")
 var sorts = require("./sort")
+var events = require("./eventSystem")
 var useExpress = express();
 var filesystem = require("fs");
 var http = require("http").Server(useExpress).listen(process.env.PORT || 3000);
@@ -15,6 +16,7 @@ const Uploader = new uploader(useExpress, express, mongoose);
 const Blogger = new blogger(useExpress, mongoose);
 const Teams = new teams(useExpress, mongoose);
 const Sorts = new sorts(useExpress, mongoose, Teams);
+const Events = new events(useExpress, mongoose);
 
 useExpress.use('/static', express.static('public'));
 var uristring =

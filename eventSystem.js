@@ -51,5 +51,26 @@ function EventSystem(events, mongoose)
             res.send({ event });
         });
     });
+
+    events.get("/AddToPositive/:eventName/:number", function (req, res) { //LISTS ALL Teams IN THE DATABASE
+        
+        var eventName = req.params.eventName;
+        var points = req.params.number;
+        
+        eventModel.findOne({ "eventName": eventName }, (err, event) => {
+            if (!event) {
+                console.log("Didnt find an event with that name");
+                res.send("Didnt find an event with that name");
+            }
+            else {
+
+                    teamModel.updateOne({ eventName: eventName },{$inc: { numberVotedFor: points } }, function (error, result) {
+                        if (error) res.send(error);
+                        else res.send(result);
+                    });
+            }
+        });
+
+    });
 }
 module.exports = EventSystem;

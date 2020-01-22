@@ -52,4 +52,4 @@ function EventSystem(events, mongoose)
         });
     });
 }
-module.exports = eventSystems;
+module.exports = EventSystem;

@@ -21,8 +21,6 @@ function PhotoUploader(uploader, mongoose, fs, multer)
 
     var file = req.files.picture;
 
-    console.log(req.body);
-    console.log("Name: " + req.body.name);
     console.log("pic: " + file);
     console.log("Pic Name: " + file.name);
     console.log("Path : " + __dirname + "/Uploads/" + file.name);
@@ -36,11 +34,15 @@ function PhotoUploader(uploader, mongoose, fs, multer)
             res.send("Somethings not right:  " + filename);
         }
         else{
-        
+            
+            var fullName = file.name;
+            var splitName = fullName.split(".");
+            var firstName = splitName[0];
+
             var newItem = new picModel();
             newItem.img.data = fs.readFileSync(__dirname + "/Uploads/" + file.name)
             newItem.img.contentType = 'image/png';
-            newItem.imgName = file.name;
+            newItem.imgName = firstName;
             newItem.save();
         }
     });

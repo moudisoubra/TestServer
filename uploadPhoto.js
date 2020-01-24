@@ -56,8 +56,8 @@ function PhotoUploader(uploader, mongoose, fs, multer)
     picModel.findOne({ "imgName": picName }, (err, pic) => {
       if (err) return next(err);
       res.contentType(pic.img.contentType);
-      //res.send(pic.img.data);
-      res.send(pic.img);
+      res.send(pic.img.data);
+      //res.send(pic.img);
     });
 
   });

@@ -47,13 +47,25 @@ function PhotoUploader(uploader, mongoose, fs, multer)
 
    });
 
+   uploader.get('/showPicture/:pictureName', function (req, res, next) {
+
+    var picName = req.params.pictureName;
+
+    picModel.findOne({ "imgName": picName }, (err, pic) => {
+      if (err) return next(err);
+      res.contentType(pic.img.contentType);
+      res.send(pic.img.data);
+    });
+
+  });
+
    uploader.get("/listAllPics", function (req, res) { //LISTS ALL PDFS IN THE DATABASE
         
     picModel.find(function (err, pic) {
         
         if (err) return console.error(err);
         
-        console.log(pic);
+        console.log(pic.imgName);
         
         res.send({ pic });
     });

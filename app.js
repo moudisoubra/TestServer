@@ -305,7 +305,11 @@ useExpress.post("/getUserInfo", function(req, res)
 
     
 });
-
+useExpress.post("/getWhatever", function(req, res)
+{
+    var userID = req.body.name;
+    console.log("Please try: " + userID);
+});
 // useExpress.listen(process.env.PORT || 3000, function () { /// Heroku Port process.env.PORT
 
 //     //console.log(process.env.PORT);

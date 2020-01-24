@@ -1,0 +1,33 @@
+
+
+<head>
+    <title> Upload Picture!</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<div class="userForm">
+
+    <h1>
+         Upload Picture Here:
+    </h1>
+
+    <form method = "post" enctype = "multipart/form-data" action="/uploadPic">
+
+        <div class="txtb">
+            <label>User ID:</label>
+            <input type = "text" name = "name" value = "" placeholder="Enter ID">
+        </div>
+
+        <div class="txtb">
+            <input type = "file" name = "picture">
+        </div>
+
+    
+      <input class = "btn" type = "submit" value="Upload">
+    </form>
+
+    <form method = "get" enctype = "multipart/form-data" action="/mainPage">   
+        <input class = "btn" type = "submit" value="Main Page">
+    </form>
+
+</div>

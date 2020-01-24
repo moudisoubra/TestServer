@@ -52,7 +52,7 @@ function EventSystem(events, mongoose)
         });
     });
 
-    events.get("/AddToPositive/:eventName/:number", function (req, res) { //LISTS ALL Teams IN THE DATABASE
+    events.get("/AddToPositive/:eventName/:number", function (req, res) { 
         
         var eventName = req.params.eventName;
         var points = req.params.number;
@@ -68,8 +68,42 @@ function EventSystem(events, mongoose)
                         if (error) res.send(error);
                         else res.send(result);
                     });
+                    eventModel.updateOne({ eventName: eventName },{$inc: { totalNumberVoted: points } }, function (error, result) {
+                        if (error) res.send(error);
+                        else res.send(result);
+                    });
             }
         });
+
+    });
+
+    events.get("/AddToNegative/:eventName/:number", function (req, res) { 
+        
+        var eventName = req.params.eventName;
+        var points = req.params.number;
+        
+        eventModel.findOne({ "eventName": eventName }, (err, event) => {
+            if (!event) {
+                console.log("Didnt find an event with that name");
+                res.send("Didnt find an event with that name");
+            }
+            else {
+
+                    eventModel.updateOne({ eventName: eventName },{$inc: { numberVotedAgainst: points } }, function (error, result) {
+                        if (error) res.send(error);
+                        else res.send(result);
+                    });
+                    eventModel.updateOne({ eventName: eventName },{$inc: { totalNumberVoted: points } }, function (error, result) {
+                        if (error) res.send(error);
+                        else res.send(result);
+                    });
+            }
+        });
+
+    });
+
+    events.get("/FindPercentage", function (req, res) {
+      
 
     });
 }

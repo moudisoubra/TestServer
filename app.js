@@ -1,17 +1,15 @@
 'use strict';
 var mongoose = require('mongoose');
 var express = require('express');
-var fileUpload = require('express-fileupload');
-var multer = require('multer');
-var uploader = require("./upload");
-var blogger = require("./blogcontroller");
-var teams = require("./team");
-var sorts = require("./sort");
-var events = require("./eventSystem");
-var pics = require("./uploadPhoto");
+var uploader = require("./upload")
+var blogger = require("./blogcontroller")
+var teams = require("./team")
+var sorts = require("./sort")
+var events = require("./eventSystem")
+var photoUploader = require("./uploadPhoto");
 var useExpress = express();
 var filesystem = require("fs");
-var bodyParser = require('body-parser');
+var multer = require("multer");
 var http = require("http").Server(useExpress).listen(process.env.PORT || 3000);
 
 var users = [];
@@ -21,15 +19,14 @@ const Blogger = new blogger(useExpress, mongoose);
 const Teams = new teams(useExpress, mongoose);
 const Sorts = new sorts(useExpress, mongoose, Teams);
 const Events = new events(useExpress, mongoose);
-const PicUploader = new pics(useExpress, bodyParser, mongoose, filesystem, multer);
+const pu = new photoUploader(useExpress, mongoose, filesystem, multer)
 
 useExpress.use('/static', express.static('public'));
-
 var uristring =
     process.env.MONGODB_URI ||
     process.env.MONGOHQ_URL ||
     'mongodb://localhost/MeltDown';
-useExpress.use(bodyParser.urlencoded({ extended: true })); 
+ 
 mongoose.connect(uristring, { useNewUrlParser: true });
 
 var db = mongoose.connection;
@@ -303,13 +300,8 @@ useExpress.post("/getUserInfo", function(req, res)
 
     });
 
-    
 });
-useExpress.post("/getWhatever", function(req, res)
-{
-    var userID = req.body.name;
-    console.log("Please try: " + userID);
-});
+
 // useExpress.listen(process.env.PORT || 3000, function () { /// Heroku Port process.env.PORT
 
 //     //console.log(process.env.PORT);

@@ -1,4 +1,4 @@
-function PhotoUploader(uploader, bodyparser, mongoose, fs, multer)
+function PhotoUploader(uploader, mongoose, fs, multer)
 {
 
    var picSchema = new mongoose.Schema({
@@ -10,7 +10,7 @@ function PhotoUploader(uploader, bodyparser, mongoose, fs, multer)
 
     var picModel = mongoose.model('pics', picSchema);
 
-    uploader.use(multer({dest:__dirname+'Uploads/'}).any());
+    //uploader.use(multer({dest:__dirname+'Uploads/'}).any());
 
    uploader.get("/picPage", function(req, res)
    {
@@ -19,18 +19,32 @@ function PhotoUploader(uploader, bodyparser, mongoose, fs, multer)
 
    uploader.post('/uploadPic',function(req,res){
 
-    //var file = req.body.picture;
+    var file = req.files.picture;
 
     console.log(req.body);
     console.log("Name: " + req.body.name);
-    //console.log("pic: " + file);
-    //console.log("Pic Name: " + file.name);
+    console.log("pic: " + file);
+    console.log("Pic Name: " + file.name);
+    console.log("Path : " + __dirname + "/Uploads/" + file.name);
 
-    // var newItem = new picModel();
-    // newItem.img.data = fs.readFileSync(req.files.pic.path)
-    // newItem.img.contentType = 'image/png';
-    // newItem.imgName = req.files.pic.name;
-    // newItem.save();
+
+
+    file.mv("./Uploads/" + file.name, function(err){
+
+        if(err){
+            console.log(err);
+            res.send("Somethings not right:  " + filename);
+        }
+        else{
+        
+            var newItem = new picModel();
+            newItem.img.data = fs.readFileSync(__dirname + "/Uploads/" + file.name)
+            newItem.img.contentType = 'image/png';
+            newItem.imgName = file.name;
+            newItem.save();
+        }
+    });
+
    });
 
    uploader.get("/listAllPics", function (req, res) { //LISTS ALL PDFS IN THE DATABASE
@@ -42,6 +56,18 @@ function PhotoUploader(uploader, bodyparser, mongoose, fs, multer)
         console.log(pic);
         
         res.send({ pic });
+    });
+
+    uploader.get("/clearAllPics", function (req, res) { //BIG RED BUTTON
+
+        picModel.remove({}, function (err) {
+            console.log('Pics DataBase Wiped')
+    
+            var string = "Pics DataBase Wiped";
+        
+            res.send(string.toString());
+        });
+    
     });
 });
 

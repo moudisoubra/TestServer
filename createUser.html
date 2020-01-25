@@ -37,10 +37,10 @@
 
     <div class="txtb">
         <label>User Nationality:</label>
-        <input type = "text" name = "userName" value = "" placeholder="Enter Nationality">
+        <input type = "text" name = "userNationality" value = "" placeholder="Enter Nationality">
     </div>
 
-    <div class="txtb">
+    <!-- <div class="txtb">
         <label>User Occupation:</label>
         <select type = "text" placeholder = "Choose Occupation" data-style="btn-info" name="userOccupation">
 
@@ -51,7 +51,7 @@
             <option value="e">E</option>
 
         </select>
-    </div>
+    </div> -->
 
     <div class="txtb">
         <label>User House:</label>
@@ -70,13 +70,45 @@
         <input type = "text" name = "userLogin" value = "" placeholder="Enter Login">
     </div>
 
-    <div class="txtb">
-        <label>User Password:</label>
-        <input type = "text" name = "userPassword" value = "" placeholder="Enter Password">
+    <div class="txtb1">
+        <label>User Property:</label>
+        <input type = "text" name = "userProperty" value = "" placeholder="Enter Property">
     </div>
-    <input class="btn" type = "submit" value="upload">
+
+    <div class="txtb1">
+        <label>User Department:</label>
+        <input type = "text" name = "userDepartment" value = "" placeholder="Enter Department">
+    </div>
+
+    <div class="txtb1">
+        <label>User Position:</label>
+        <input type = "text" name = "userPosition" value = "" placeholder="Enter Position">
+    </div>   
+        
+    <div class="txtb1">
+        <label>User Date Of Joining:</label>
+
+        <label>Month:</label>
+        <input type="number" min="1" max="12" step="1" name="userMonth" oninput="(validity.valid)||(value='');">
+
+        <label>Day:</label>
+        <input type="number" min="1" max="31" step="1" name="userDay" oninput="(validity.valid)||(value='');">
+
+        <label>Year:</label>
+        <input type="number" min="2020" max="2999" step="1" name="userYear" oninput="(validity.valid)||(value='');">
+
+    </div>
+
+    <div class="txtb">
+        <label>Profile Picture:</label>
+        <input type = "file" name = "picture">
+    </div>
+
+    <input class="btn" type = "submit" value="upload" name = "UploadButton">
 
     </form>
+
+
 
     <form method = "get" enctype = "multipart/form-data" action="/mainPage">   
         <input class = "btn" type = "submit" value="Main Page">

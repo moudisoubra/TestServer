@@ -19,7 +19,7 @@ const Blogger = new blogger(useExpress, mongoose);
 const Teams = new teams(useExpress, mongoose);
 const Sorts = new sorts(useExpress, mongoose, Teams);
 const Events = new events(useExpress, mongoose);
-const pu = new photoUploader(useExpress, mongoose, filesystem, multer)
+//const pu = new photoUploader(useExpress, mongoose, filesystem, multer)
 
 useExpress.use('/static', express.static('public'));
 var uristring =
@@ -36,7 +36,7 @@ db.once('open', function () {
 });
 
 
-
+//Picture, Name, nationality, position, department, Property, Date of Joining (DOJ)
 var usersSchema = new mongoose.Schema({
     user_ID: String,
     user_Password: String,
@@ -44,7 +44,12 @@ var usersSchema = new mongoose.Schema({
     user_Gender: String, 
     user_Seniority: String,
     user_House: Number,
-    user_Login: String
+    user_Login: String,
+    user_Nationality: String, 
+    user_Department: String,
+    user_DOJ: String,
+    user_Property:String,
+    user_Position: String
 });
 
 var User = mongoose.model('User', usersSchema);
@@ -54,6 +59,11 @@ useExpress.get("/wakeup", function (req, res) {
     var string = "Server is awake!";
 
     res.send(string.toString());
+});
+
+
+useExpress.get("/TryFunction", function (req, res) {
+    pu.checkFunction();
 });
 
 useExpress.get("/FindUser/:userLogin", function (req, res) {
@@ -250,12 +260,19 @@ useExpress.post("/getUserInfo", function(req, res)
     var userID = req.body.userID;
     var userName = req.body.userName;
     var userGender = req.body.userGender;
-    var userSeniority = req.body.userOccupation;
+    //var userSeniority = req.body.userOccupation;
     var userHouse = req.body.userHouse;
     var userLogin = req.body.userLogin;
-    var userPassword = req.body.userPassword;
+    var userPassword = "J@"+userID;
+    var userNationality = req.body.userNationality;
+    var userDOJ = req.body.userMonth + "/" + req.body.userDay + "/" + req.body.userYear;
+    var userProperty = req.body.userProperty;
+    var userPosition = req.body.userPosition;
+    var userDepartment = req.body.userDepartment;
+    var userPicture = req.files.picture;
 
-    console.log(userID + " " + userName + " " + userGender + " " + userSeniority + " " + userHouse + " " + userLogin + " " + userPassword);
+    console.log(userID + " " + userName + " " + userNationality 
+    + " " +userPosition + " " + userDepartment + " " + userDOJ + " " + userProperty );
 
     User.findOne({ "user_ID": userID }, (err, user) => {
 
@@ -264,33 +281,47 @@ useExpress.post("/getUserInfo", function(req, res)
 
             console.log("Didnt find");
 
+            picUploader(userPicture, userID.toString());
+
+            createRecruit(userID.toString(), userName.toString(), userNationality.toString()
+            ,userPosition.toString(), userDepartment.toString(), userDOJ.toString(), userProperty);
+
             var U = new User({
                 "user_ID": userID,
                 "user_Name": userName,
                 "user_Gender": userGender,
-                "user_Seniority": userSeniority,
                 "user_House": userHouse,
                 "user_Login": userLogin,
-                "user_Password": userPassword
+                "user_Password": userPassword,
+                "user_Nationality": userNationality, 
+                "user_Department": userDepartment,
+                "user_DOJ": userDOJ,
+                "user_Property":userProperty,
+                "user_Position": userPosition
             });
 
             console.log("Created: " + U);
+            
+            U.save(function (err) { if (err) console.log('Error on save!');});
             res.sendFile(__dirname+"/userCreated.html");
-
-            U.save(function (err) { if (err) console.log('Error on save!') });
         }
         else 
         {
-
+            picUploader(userPicture, userID.toString());
+            createRecruit(userID.toString(), userName.toString(), userNationality.toString()
+            ,userPosition.toString(), userDepartment.toString(), userDOJ.toString(), userProperty);
             user = new User({
-
                 "user_ID": userID,
                 "user_Name": userName,
                 "user_Gender": userGender,
-                "user_Seniority": userSeniority,
-                "user_House": userHouse, 
+                "user_House": userHouse,
                 "user_Login": userLogin,
-                "user_Password": userPassword
+                "user_Password": userPassword,
+                "user_Nationality": userNationality, 
+                "user_Department": userDepartment,
+                "user_DOJ": userDOJ,
+                "user_Property":userProperty,
+                "user_Position": userPosition
             });
 
             console.log("User Found: " + user);
@@ -302,6 +333,167 @@ useExpress.post("/getUserInfo", function(req, res)
 
 });
 
+
+
+//-----------------------------------------------------------------------------------------------------Picture Uploads-----------------------------------//
+console.log("PIC UPLOAD UP");
+var picSchema = new mongoose.Schema({
+ 
+     imgName: String,
+     img: { data: Buffer, contentType: String }
+
+ });
+
+ var picModel = mongoose.model('pics', picSchema);
+
+
+ function picUploader(file, name)
+ {
+ file.mv("./Uploads/" + file.name, function(err){
+
+     if(err){
+         console.log(err);
+         res.send(err);
+     }
+     else{
+
+         var newItem = new picModel();
+         newItem.img.data = filesystem.readFileSync(__dirname + "/Uploads/" + file.name)
+         newItem.img.contentType = 'image/png';
+         newItem.imgName = name;
+         newItem.save();
+     }
+ });
+ }
+
+ function checkFuction()
+     {
+         console.log("THIS WORKS")
+ }
+
+
+
+useExpress.get("/picPage", function(req, res)
+{
+    res.sendFile(__dirname+"/uploadPic.html");
+})
+
+useExpress.post('/uploadPic',function(req,res){
+
+ var file = req.files.picture;
+
+ console.log("pic: " + file);
+ console.log("Pic Name: " + file.name);
+ console.log("Path : " + __dirname + "/Uploads/" + file.name);
+
+
+ picUploader(file, req.body.userName);
+
+
+});
+
+useExpress.get('/showPicture/:pictureName', function (req, res, next) {
+
+ var picName = req.params.pictureName;
+
+ picModel.findOne({ "imgName": picName }, (err, pic) => {
+     if(!pic)
+     {
+         res.send("No PIC FOUND");
+     }
+     else{
+        res.contentType(pic.img.contentType);
+        res.send(pic.img.data);
+     }
+   if (err) return next(err);
+
+   //res.send(pic.img);
+ });
+
+});
+
+useExpress.get("/listAllPics", function (req, res) { 
+        
+    picModel.find(function (err, pic) {
+        
+        if (err) return console.error(err);
+        
+        console.log(pic.imgName);
+        
+        res.send({ pic });
+    });
+});
+useExpress.get("/clearAllPics", function (req, res) { 
+    picModel.remove({}, function (err) {
+        console.log('Pics DataBase Wiped')
+
+        var string = "Pics DataBase Wiped";
+    
+        res.send(string.toString());
+    });
+
+});
+ 
+ //-----------------------------------------------------------------------------------------------------Picture Uploads-----------------------------------//
+ //-----------------------------------------------------------------------------------------------------New User Uploads-----------------------------------//
+ var recruitsSchema = new mongoose.Schema({
+ 
+    recruit_ID: String,
+    recruit_Name: String,
+    recruit_Nationality: String,
+    recruit_Department: String,
+    recruit_Position: String,
+    recruit_DOJ: String,
+    recruit_Property: String
+
+});
+
+var recruitsModel = mongoose.model('Recruits', recruitsSchema);
+
+function createRecruit(ID, name, nationality, position, department, DOJ, property)
+{
+    recruitsModel.findOne({ "recruit_ID": ID }, (err, recruit) => {
+
+        if (!recruit) 
+        {
+            var U = new recruitsModel({
+                "recruit_ID": ID,
+                "recruit_Name": name,
+                "recruit_Nationality": nationality,
+                "recruit_Department": department,
+                "recruit_Position": position,
+                "recruit_DOJ": DOJ,
+                "recruit_Property": property
+            });
+
+            console.log("Recruited: " + U);
+
+            U.save(function (err) { if (err) console.log('Error on save!');});
+        }
+    });
+}
+
+useExpress.get("/listAllRecruits", function (req, res) { 
+        
+    recruitsModel.find(function (err, recruit) {
+        
+        if (err) return console.error(err);
+        
+        //console.log(recruit);
+        
+        res.send({ recruit });
+    });
+});
+useExpress.get("/clearAllRecruits", function (req, res) { 
+    recruitsModel.remove({}, function (err) {
+        console.log('Recruits DataBase Wiped')
+
+        var string = "Recruits DataBase Wiped";
+    
+        res.send(string.toString());
+    });
+
+});
 // useExpress.listen(process.env.PORT || 3000, function () { /// Heroku Port process.env.PORT
 
 //     //console.log(process.env.PORT);

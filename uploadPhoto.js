@@ -10,7 +10,6 @@ function PhotoUploader(uploader, mongoose, fs, multer)
 
     var picModel = mongoose.model('pics', picSchema);
 
-    //uploader.use(multer({dest:__dirname+'Uploads/'}).any());
 
    uploader.get("/picPage", function(req, res)
    {

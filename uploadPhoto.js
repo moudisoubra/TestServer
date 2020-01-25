@@ -56,6 +56,7 @@ function PhotoUploader(uploader, mongoose, fs, multer)
       if (err) return next(err);
       res.contentType(pic.img.contentType);
       res.send(pic.img.data);
+      //res.send(pic.img);
     });
 
   });

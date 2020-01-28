@@ -11,10 +11,10 @@
          Upload PDF Here:
     </h1>
 
-    <form method = "post" enctype = "multipart/form-data" action="/">
+    <form method = "post" enctype = "multipart/form-data" action="/" onsubmit="return Checkfiles()">
 
         <div class="txtb">
-            <input type = "file" name = "fileName">
+            <input type = "file" name = "fileName" id="fileUpload">
         </div>
 
     
@@ -25,4 +25,16 @@
         <input class = "btn" type = "submit" value="Main Page">
     </form>
 
+    <script type="text/javascript">
+        function Checkfiles()
+        {
+            var fname = document.getElementById("fileUpload").value.match(/(\.pdf)$/i);
+    
+            if(fname == null)
+            {
+                alert("Please upload a PDF file only!")
+            }
+             return fname !=null;
+        }
+        </script>
 </div>

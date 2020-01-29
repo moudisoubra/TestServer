@@ -8,7 +8,7 @@ var sorts = require("./sort")
 var events = require("./eventSystem")
 var photoUploader = require("./uploadPhoto");
 var awarder = require("./AwardController.js");
-var emailer = require("./emailSender.js");
+//var emailer = require("./emailSender.js");
 var useExpress = express();
 var filesystem = require("fs");
 var multer = require("multer");
@@ -23,7 +23,7 @@ const Teams = new teams(useExpress, mongoose);
 const Sorts = new sorts(useExpress, mongoose, Teams);
 const Events = new events(useExpress, mongoose);
 const Awarder = new awarder(useExpress, mongoose);
-const Emailer = new emailer();
+//const Emailer = new emailer();
 
 //const pu = new photoUploader(useExpress, mongoose, filesystem, multer)
 useExpress.use('/static', express.static('public'));

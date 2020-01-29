@@ -3,7 +3,7 @@
 function Awarder(award, mongoose)
 {
     var awardSchema = new mongoose.Schema({
-        awardedPerson: String,
+        userID: String,
         awardContent: String,
         awardID: String
     });
@@ -12,21 +12,19 @@ function Awarder(award, mongoose)
 
     console.log("Awarder Server Started");
 
-    award.get("/CreateAwardPost/:userID/:userName/:content", function(req, res)
+    award.get("/CreateAwardPost/:userID/:content", function(req, res)
     {
         var userID = req.params.userID;
-        var userName = req.params.userName;
         var content = req.params.content;
 
 
         var post = new awardModel({
 
             "userID": userID,
-            "userName": userName,
             "awardContent": content
         });
         
-        post.blogID = post._id;
+        post.awardID = post._id;
         post.save(function (err) { if (err) console.log('Error on save!') });
 
         res.send({post});

@@ -1,5 +1,9 @@
 
-
+function bloggerContainer(){
+    
+    this.blogger=Blogger;
+    return this;
+}
 function Blogger(blog, mongoose)
 {
     var blogSchema = new mongoose.Schema({
@@ -12,6 +16,11 @@ function Blogger(blog, mongoose)
     var blogModel = mongoose.model('blogs', blogSchema);
 
     console.log("Blogger Server Started");
+
+    function SayHI()
+    {
+        console.log("hi");
+    }
 
     blog.get("/CreateBlogPost/:userID/:userName/:content", function(req, res)
     {
@@ -59,4 +68,4 @@ function Blogger(blog, mongoose)
 
 }
 
-module.exports = Blogger;
+module.exports = bloggerContainer;

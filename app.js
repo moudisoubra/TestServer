@@ -1,26 +1,29 @@
-'use strict';
+
 var mongoose = require('mongoose');
 var express = require('express');
 var uploader = require("./upload")
-var blogger = require("./blogcontroller")
+var blogger = require("./blogcontroller")();
 var teams = require("./team")
 var sorts = require("./sort")
 var events = require("./eventSystem")
 var photoUploader = require("./uploadPhoto");
+var awarder = require("./AwardController.js");
 var useExpress = express();
 var filesystem = require("fs");
 var multer = require("multer");
 var http = require("http").Server(useExpress).listen(process.env.PORT || 3000);
+//console.log((blogger));
 
 var users = [];
 
 const Uploader = new uploader(useExpress, express, mongoose);
-const Blogger = new blogger(useExpress, mongoose);
+const Blogger = new blogger.blogger(useExpress, mongoose);
 const Teams = new teams(useExpress, mongoose);
 const Sorts = new sorts(useExpress, mongoose, Teams);
 const Events = new events(useExpress, mongoose);
-//const pu = new photoUploader(useExpress, mongoose, filesystem, multer)
+const Awarder = new awarder(useExpress, mongoose);
 
+//const pu = new photoUploader(useExpress, mongoose, filesystem, multer)
 useExpress.use('/static', express.static('public'));
 var uristring =
     process.env.MONGODB_URI ||
@@ -57,6 +60,7 @@ var User = mongoose.model('User', usersSchema);
 useExpress.get("/wakeup", function (req, res) {
 
     var string = "Server is awake!";
+    
 
     res.send(string.toString());
 });

@@ -12,10 +12,33 @@ function Awarder(award, mongoose)
 
     console.log("Awarder Server Started");
 
+    award.get("/awardPage", function(req, res)
+    {
+        res.sendFile(__dirname+"/awardPage.html");
+    });
+
     award.get("/CreateAwardPost/:userID/:content", function(req, res)
     {
         var userID = req.params.userID;
         var content = req.params.content;
+
+
+        var post = new awardModel({
+
+            "userID": userID,
+            "awardContent": content
+        });
+        
+        post.awardID = post._id;
+        post.save(function (err) { if (err) console.log('Error on save!') });
+
+        res.send({post});
+    });
+
+    award.post("/WebsiteAwardPost", function(req, res)
+    {
+        var userID = req.body.userID;
+        var content = req.body.awardName;
 
 
         var post = new awardModel({

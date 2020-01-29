@@ -1,0 +1,41 @@
+
+<head>
+    <title> Create User!</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="userForm">
+    
+
+        <h1>
+        Give Awards!
+        </h1>
+        <div id="error"></div>
+        <form method = "post"  id="form" enctype = "multipart/form-data" action="/WebsiteAwardPost" name = "form">
+    
+        <!-- /AddUser/:userID/:content -->
+    
+        <div class="txtb">
+            <label>User ID:</label>
+            <input type = "text" id="userID" name = "userID" value = "" placeholder="Enter ID" >
+        </div>
+    
+        <div class="txtb">
+            <label>User Award Name:</label>
+            <input type = "text" id="awardName" name = "awardName" value = "" placeholder="Enter Award Name" >
+        </div>
+    
+        <input class="btn" type = "submit" value="Upload"  name = "UploadButton">
+    
+        </form>
+    
+    
+    
+        <form method = "get" enctype = "multipart/form-data" action="/mainPage">   
+            <input class = "btn" type = "submit" value="Main Page">
+        </form>
+    
+    </div>
+
+</body>

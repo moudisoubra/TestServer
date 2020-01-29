@@ -2,7 +2,7 @@
   "name": "soubra-server",
   "version": "0.0.0",
   "description": "SoubraServer",
-  "main": "app.js",
+  "main": "emailSender.js",
   "author": {
     "name": "Soubra"
   },

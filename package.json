@@ -2,13 +2,13 @@
   "name": "soubra-server",
   "version": "0.0.0",
   "description": "SoubraServer",
-  "main": "emailSender.js",
+  "main": "app.js",
   "author": {
     "name": "Soubra"
   },
   "scripts": {
   
-    "start": "emailSender.js"
+    "start": "app.js"
   },
   "dependencies": {
     "body-parser": "^1.15.2",

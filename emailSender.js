@@ -1,4 +1,8 @@
-var fs = require('fs');
+
+function Emailer()
+{
+    console.log("emailer up");
+    var fs = require('fs');
 var path = require('path');
 
 var nodeMailer = require('nodemailer');
@@ -28,3 +32,5 @@ transporter.sendMail(HelperOptions, (error, info) => {
     console.log("Email sent");
     console.log(info);
 })
+}
+module.exports = Emailer;

@@ -7,7 +7,7 @@
     "name": "Soubra"
   },
   "scripts": {
-    "start": "node emailSender.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "^1.15.2",

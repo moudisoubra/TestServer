@@ -70,17 +70,17 @@ useExpress.get("/TryFunction", function (req, res) {
     pu.checkFunction();
 });
 
-useExpress.get("/FindUser/:userLogin", function (req, res) {
+useExpress.get("/FindUser/:userID", function (req, res) {
 
-    var userLogin = req.params.userLogin;
+    var userID = req.params.userID;
 
-    User.findOne({ "user_Login": userLogin }, (err, user) => {
+    User.findOne({ "user_ID": userID }, (err, user) => {
 
         if (!user) 
         {
-            console.log("Didnt find a user with that Login");
+            console.log("Didnt find a user with that ID");
 
-            var string = "Didn't find a user with that Login";
+            var string = "Didn't find a user with that ID";
 
             res.send(string.toString());
         }

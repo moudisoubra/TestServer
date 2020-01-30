@@ -1,0 +1,120 @@
+// playground requires you to assign document definition to a variable called dd
+
+var dd = {
+	content: [
+		{
+			style: 'tableExample',
+			color: '#444',
+			table: {
+				widths: [77.66666666666667,77.66666666666667,77.66666666666667,77.66666666666667,77.66666666666667,77.66666666666667],
+				//headerRows: 2,
+				// keepWithHeaderRows: 1,
+				body: [
+					[{text: 'INTERNAL VACANCY APPLICATION FORM', style: 'tableHeader', colSpan: 6, alignment: 'center', fillColor: '#CCCCCC'},
+					{}, {},{},'',''],
+					
+					[{text: 'Section 1 – Associate information', colSpan: 6, alignment: 'center', bold:true,color: 'black', fillColor: '#CCCCCC'}
+					, {}, {},{},'',''],
+					
+					[{text: 'Associate Name', colSpan: 1 , fontSize: 10},
+					{text: ' ', colSpan: 2, fontSize: 10},
+					{},
+					{text: 'Department', colSpan: 1, fontSize: 10},
+					{text: ' ', colSpan: 2, fontSize: 10},
+					{}],
+										
+					[{text: 'Associate #', colSpan: 1, fontSize: 10},
+					{text: ' ', colSpan: 2, fontSize: 10},
+					{},
+					{text: 'Division', colSpan: 1, fontSize: 10},
+					{text: ' ', colSpan: 2, fontSize: 10},
+					{}],
+					
+					[{text: 'Job Title', colSpan: 1, fontSize: 10},
+					{text: ' ', colSpan: 2, fontSize: 10},
+					{},
+					{text: 'Location', colSpan: 1, fontSize: 10},
+					{text: ' ', colSpan: 2, fontSize: 10},
+					{}],	
+					
+					[{text: 'Starting date in current position', colSpan: 1, fontSize: 10},
+					{text: ' ', colSpan: 2, fontSize: 10},
+					{},
+					{text: 'Line manager', colSpan: 1, fontSize: 10},
+					{text: ' ', colSpan: 2, fontSize: 10},
+					{}],
+					
+					[{text: 'Mobile #', colSpan: 1, fontSize: 10},
+					{text: ' ', colSpan: 2, fontSize: 10},
+					{},
+					{text: 'Email address', colSpan: 1, fontSize: 10},
+					{text: ' ', colSpan: 2, fontSize: 10},
+					{}],
+										
+					[{text: 'Position applied for', colSpan: 6, alignment: 'center', bold:true,color: 'black', fillColor: '#CCCCCC'}
+					, {}, {},{},'',''],
+					
+					[{text: 'Position applied for', colSpan: 1, fontSize: 10, height: 10},
+					{text: ' ', colSpan: 5, fontSize: 10},
+					{},
+					{},
+					{},
+					{}],
+										
+					[{text: 'Department', colSpan: 1, fontSize: 10, height: 10},
+					{text: ' ', colSpan: 5, fontSize: 10},
+					{},
+					{},
+					{},
+					{}],
+										
+					[{text: 'Property', colSpan: 1, fontSize: 10, height: 10},
+					{text: ' ', colSpan: 5, fontSize: 10},
+					{},
+					{},
+					{},
+					{}],
+					
+					[{text: 'Languages & Computer skills', colSpan: 6, alignment: 'center', bold:true,color: 'black', fillColor: '#CCCCCC'}
+					, {}, {},{},'',''],
+					
+					[{text: 'English Language', colSpan: 2, fontSize: 10, height: 10, 
+					alignment: 'center', bold:true,color: 'black'},
+					{},
+					{text: 'Other:', colSpan: 2, fontSize: 10, height: 10, 
+					alignment: 'center', bold:true,color: 'black'},
+					{},
+					{text: 'Computer Skills', colSpan: 2, fontSize: 10, height: 10, 
+					alignment: 'center', bold:true,color: 'black'},
+					{}],
+				]
+			}
+		}
+		
+	],
+	styles: {
+		header: {
+			fontSize: 18,
+			bold: true,
+			margin: [0, 0, 0, 10]
+		},
+		subheader: {
+			fontSize: 16,
+			bold: true,
+			margin: [0, 10, 0, 5]
+		},
+		tableExample: {
+			margin: [0, 5, 0, 15]
+		},
+		tableHeader: {
+			bold: true,
+			fontSize: 13,
+			margin: [0, 10, 0, 0],
+			color: 'black'
+		}
+	},
+	defaultStyle: {
+		// alignment: 'justify'
+	}
+	
+}

@@ -1,17 +1,49 @@
+
 <head>
-
-<script defer src="formCheck.js"></script>
+  <title> Create User!</title>
+  <link rel="stylesheet" href="/static/style.css">
 </head>
+<body>
 
-<div id="error"></div>
-<form id="form" action="/" method="GET">
-  <div>
-    <label for="name">Name</label>
-    <input id="name" name="name" type="text" required>
+  <div class="userForm">
+  
+      <h1>
+      !
+      </h1>
+      <div id="error"></div>
+      <form method = "post"  id="form" enctype = "multipart/form-data" action="/pdf" name = "form">
+  
+      <!-- /AddUser/:userID/:userName/:userGender/:userSeniority/:userHouse/:userLogin/:userPassword -->
+  
+      <div class="txtb">
+          <label>User ID:</label>
+          <input type = "text" id="fname" name = "fname" value = "" placeholder="Enter ID" >
+      </div>
+  
+      <input class="btn" type = "submit" value="upload"  name = "UploadButton">
+  
+      </form>
+  
+  
+  
+      <form method = "get" enctype = "multipart/form-data" action="/mainPage">   
+          <input class = "btn" type = "submit" value="Main Page">
+      </form>
+  
   </div>
-  <div>
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password">
-  </div>
-  <input class="btn" type = "submit" value="upload" name = "UploadButton">
-</form>
+  
+  <script type="text/javascript">
+  function Checkfiles()
+  {
+      var fname = document.getElementById("fileUpload").value.match(/(\.png)$/i);
+
+      if(fname == null)
+      {
+          alert("Please upload a PNG file only!")
+      }
+       return fname !=null;
+  }
+  </script>
+
+
+</body>

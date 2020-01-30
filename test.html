@@ -8,23 +8,131 @@
   <div class="userForm">
   
       <h1>
-      !
+      Application Page
       </h1>
       <div id="error"></div>
       <form method = "post"  id="form" enctype = "multipart/form-data" action="/pdf" name = "form">
   
       <!-- /AddUser/:userID/:userName/:userGender/:userSeniority/:userHouse/:userLogin/:userPassword -->
-  
+      
       <div class="txtb">
-          <label>User ID:</label>
-          <input type = "text" id="fname" name = "fname" value = "" placeholder="Enter ID" >
+          <label>Name:</label>
+          <input type = "text" id="associateName" name = "associateName" value = "" placeholder="Enter Name">
+      </div>
+
+      <div class="txtb">
+        <label>Department:</label>
+        <input type = "text" id="department" name = "department" value = "" placeholder="Enter Department">
+      </div>
+
+      <div class="txtb">
+        <label>Number:</label>
+        <input type = "text" id="associateNumber" name = "associateNumber" value = "" placeholder="Enter Number">
       </div>
   
+      <div class="txtb">
+        <label>Division:</label>
+        <input type = "text" id="division" name = "division" value = "" placeholder="Enter Division">
+      </div>
+    
+      <div class="txtb">
+        <label>Job Title:</label>
+        <input type = "text" id="jobTitle" name = "jobTitle" value = "" placeholder="Enter Job Title">
+      </div>
+    
+      <div class="txtb">
+        <label>Location:</label>
+        <input type = "text" id="location" name = "location" value = "" placeholder="Enter Location">
+      </div>
+    
+      <div class="txtb1">
+        <label>Starting Date:</label>
+
+        <label>Month:</label>
+        <input type="number" min="1" max="12" step="1" name="startMonth" oninput="(validity.valid)||(value='');" >
+
+        <label>Day:</label>
+        <input type="number" min="1" max="31" step="1" name="startDay" oninput="(validity.valid)||(value='');" >
+
+        <label>Year:</label>
+        <input type="number" min="2020" max="2999" step="1" name="startYear" oninput="(validity.valid)||(value='');" >
+
+    </div>
+          
+      <div class="txtb">
+        <label>Line Manager Name:</label>
+        <input type = "text" id="lineManager" name = "lineManager" value = "" placeholder="Enter Line Manager Name">
+      </div>
+          
+      <div class="txtb">
+        <label>Mobile Number:</label>
+        <input type = "text" id="mobileNumber" name = "mobileNumber" value = "" placeholder="Enter Mobile #">
+      </div>
+          
+      <div class="txtb">
+        <label>Email Address:</label>
+        <input type = "text" id="emailAddress" name = "emailAddress" value = "" placeholder="Enter Email Address">
+      </div>
+
+      <div class="txtb1">
+        <label>Position Applied For:</label>
+
+        <label>Position Applied For:</label>
+        <input type = "text" id="posApplyFor" name = "posApplyFor" value = "" placeholder="Enter Position Applying For">
+        <label>Department:</label>
+        <input type = "text" id="posDepartment" name = "posDepartment" value = "" placeholder="Enter Department Applying For">
+        <label>Property:</label>
+        <input type = "text" id="posProperty" name = "posProperty" value = "" placeholder="Enter Property Applying For">
+
+      </div>
+
+      <div class="txtb">
+        <label>English Language:</label>
+
+        <select type = "text" placeholder = "Choose Level" data-style="btn-info" name="englishLanguage" >
+
+            <option value="None">None</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+
+        </select>
+      </div>
+    
+      <div class="txtb">
+        <label>Other Language:</label>
+        <input type = "text" id="otherLanguageName" name = "otherLanguageName" value = "" placeholder="Enter Other Language (Optional)">
+        <select type = "text" placeholder = "Choose Level" data-style="btn-info" name="otherLanguageValue" >
+
+            <option value="None">None</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+
+        </select>
+      </div>
+
+      <div class="txtb">
+        <label>Computer Skills:</label>
+
+        <select type = "text" placeholder = "Choose Level" data-style="btn-info" name="computerSkills" >
+
+            <option value="None">None</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+
+        </select>
+      </div>
+
+      <div class="txtb">
+        <label>Please provide details of your background, experience and qualifications which would, in your opinion, contribute to success in this position (please provide separate sheet if needed):</label>
+        <input type = "text" id="paragraph" name = "paragraph" value = "" placeholder="Enter Here: " style="height: 300px">
+      </div>
+
       <input class="btn" type = "submit" value="upload"  name = "UploadButton">
   
       </form>
-  
-  
   
       <form method = "get" enctype = "multipart/form-data" action="/mainPage">   
           <input class = "btn" type = "submit" value="Main Page">

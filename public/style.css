@@ -36,6 +36,13 @@ body{
     font-weight: 100;
 }
 
+.txtParagraph{
+    border: 1px solid gray;
+    margin: 8px 0;
+    padding: 12px 18px;
+    border-radius: 8px;
+}
+
 .txtb{
     border: 1px solid gray;
     margin: 8px 0;

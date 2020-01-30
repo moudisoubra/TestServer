@@ -82,6 +82,27 @@
     
         const fname = req.body.fname;
         const lname = req.body.lname;
+
+        var associateName = req.body.associateName;
+        var department = req.body.department;
+        var associateNumber = req.body.associateNumber;
+        var division = req.body.division;
+        var jobTitle = req.body.jobTitle;
+        var location = req.body.location;
+        var startingDate = req.body.startMonth + "/" + req.body.startDay + "/" + req.body.startYear;
+        var lineManager = req.body.lineManager;
+        var mobileNumber = req.body.mobileNumber;
+        var emailAddress = req.body.emailAddress;
+        var posApplyFor = req.body.posApplyFor;
+        var posDepartment = req.body.posDepartment;
+        var posProperty = req.body.posProperty;
+        var englishLanguage = req.body.englishLanguage;
+        var otherLanguageName = req.body.otherLanguageName;
+        var otherLanguageValue = req.body.otherLanguageValue;
+        var computerSkills = req.body.computerSkills;
+        var paragraph = req.body.paragraph;
+
+
         var download;
         var documentDefinition = {
             content: [
@@ -100,63 +121,95 @@
                             , {}, {},{},'',''],
                             
                             [{text: 'Associate Name', colSpan: 1 , fontSize: 10},
-                            {text: ' ', colSpan: 2, fontSize: 10},
+                            {text: ' ' + associateName, colSpan: 2, fontSize: 10},
                             {},
                             {text: 'Department', colSpan: 1, fontSize: 10},
-                            {text: ' ', colSpan: 2, fontSize: 10},
+                            {text: ' ' + department, colSpan: 2, fontSize: 10},
                             {}],
                                                 
                             [{text: 'Associate #', colSpan: 1, fontSize: 10},
-                            {text: ' ', colSpan: 2, fontSize: 10},
+                            {text: ' ' + associateNumber, colSpan: 2, fontSize: 10},
                             {},
                             {text: 'Division', colSpan: 1, fontSize: 10},
-                            {text: ' ', colSpan: 2, fontSize: 10},
+                            {text: ' ' + division, colSpan: 2, fontSize: 10},
                             {}],
                             
                             [{text: 'Job Title', colSpan: 1, fontSize: 10},
-                            {text: ' ', colSpan: 2, fontSize: 10},
+                            {text: ' ' + jobTitle, colSpan: 2, fontSize: 10},
                             {},
                             {text: 'Location', colSpan: 1, fontSize: 10},
-                            {text: ' ', colSpan: 2, fontSize: 10},
+                            {text: ' ' + location, colSpan: 2, fontSize: 10},
                             {}],	
                             
                             [{text: 'Starting date in current position', colSpan: 1, fontSize: 10},
-                            {text: ' ', colSpan: 2, fontSize: 10},
+                            {text: ' ' + startingDate, colSpan: 2, fontSize: 10},
                             {},
                             {text: 'Line manager', colSpan: 1, fontSize: 10},
-                            {text: ' ', colSpan: 2, fontSize: 10},
+                            {text: ' ' + lineManager, colSpan: 2, fontSize: 10},
                             {}],
                             
                             [{text: 'Mobile #', colSpan: 1, fontSize: 10},
-                            {text: ' ', colSpan: 2, fontSize: 10},
+                            {text: ' ' + mobileNumber, colSpan: 2, fontSize: 10},
                             {},
                             {text: 'Email address', colSpan: 1, fontSize: 10},
-                            {text: ' ', colSpan: 2, fontSize: 10},
+                            {text: ' ' + emailAddress, colSpan: 2, fontSize: 10},
                             {}],
                                                 
                             [{text: 'Position applied for', colSpan: 6, alignment: 'center', bold:true,color: 'black', fillColor: '#CCCCCC'}
                             , {}, {},{},'',''],
                             
-                            [{text: 'Position applied for', colSpan: 1, fontSize: 10, height: 100},
-                            {text: ' ', colSpan: 5, fontSize: 10},
+                            [{text: 'Position applied for', colSpan: 1, fontSize: 10, height: 10},
+                            {text: ' ' + posApplyFor, colSpan: 5, fontSize: 10},
                             {},
                             {},
                             {},
                             {}],
                                                 
-                            [{text: 'Department', colSpan: 1, fontSize: 10, height: 100},
-                            {text: ' ', colSpan: 5, fontSize: 10},
+                            [{text: 'Department', colSpan: 1, fontSize: 10, height: 10},
+                            {text: ' ' + posDepartment, colSpan: 5, fontSize: 10},
                             {},
                             {},
                             {},
                             {}],
                                                 
-                            [{text: 'Property', colSpan: 1, fontSize: 10, height: 100},
-                            {text: ' ', colSpan: 5, fontSize: 10},
+                            [{text: 'Property', colSpan: 1, fontSize: 10, height: 10},
+                            {text: ' ' + posProperty, colSpan: 5, fontSize: 10},
                             {},
                             {},
                             {},
                             {}],
+                            
+                            [{text: 'Languages & Computer skills', colSpan: 6, alignment: 'center', bold:true,color: 'black', fillColor: '#CCCCCC'}
+                            , {}, {},{},'',''],
+                            
+                            [{text: 'English Language', colSpan: 2, fontSize: 10, height: 10, 
+                            alignment: 'center', bold:true,color: 'black'},
+                            {},
+                            {text: 'Other: ' + otherLanguageName, colSpan: 2, fontSize: 10, height: 10, 
+                            alignment: 'center', bold:true,color: 'black'},
+                            {},
+                            {text: 'Computer Skills', colSpan: 2, fontSize: 10, height: 10, 
+                            alignment: 'center', bold:true,color: 'black'},
+                            {}],
+                            
+                            [{text: ' ' + englishLanguage, colSpan: 2, fontSize: 10, height: 10, 
+                            alignment: 'center', bold:true,color: 'black'},
+                            {},
+                            {text: ' ' + otherLanguageValue, colSpan: 2, fontSize: 10, height: 10, 
+                            alignment: 'center', bold:true,color: 'black'},
+                            {},
+                            {text: ' ' + computerSkills, colSpan: 2, fontSize: 10, height: 10, 
+                            alignment: 'center', bold:true,color: 'black'},
+                            {}],
+                            
+                            [{text: 'Please provide details of your background, experience and qualifications which would, in your opinion, contribute to success in this position (please provide separate sheet if needed)',
+                            colSpan: 6, fontSizw:10, alignment: 'center', bold:true, color: 'black', fillColor: '#CCCCCC'}
+                            , {}, {},{},'',''],
+                            
+                            [{text: ' ' + paragraph,
+                            colSpan: 6, fontSizw:10, alignment: 'center',
+                            color: 'black', height: 100}
+                            , {}, {},{},'',''],
                         ]
                     }
                 }
@@ -186,6 +239,7 @@
             defaultStyle: {
                 // alignment: 'justify'
             }
+            
                  
         };
     
@@ -213,9 +267,9 @@
             //res.end(download);
 
                     let HelperOptions = {
-                        from: '"Form Dummy" testdummynodejs@gmail.com',
+                        from: '"Form Robot" testdummynodejs@gmail.com',
                         to: 'moudisoubra001@gmail.com',
-                        subject: "HI", 
+                        subject: "Job Application Form", 
                         attachments: [        {   // define custom content type for the attachment
                             filename: 'form.pdf',
                             path: __dirname + "/Uploads/whatever.pdf",

@@ -12,7 +12,7 @@ var emailer = require("./emailSender.js");
 var useExpress = express();
 var filesystem = require("fs");
 var multer = require("multer");
-var http = require("http").Server(useExpress).listen(process.env.PORT || 3000);
+var http = require("http").Server(useExpress).listen(process.env.PORT || 3001);
 //console.log((blogger));
 
 var users = [];

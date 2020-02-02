@@ -1,0 +1,39 @@
+
+<head>
+    <title> Post an Event!</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="userForm">
+    
+
+        <h1>
+        Post an Event!
+        </h1>
+        <div id="error"></div>
+        <form method = "post"  id="form" enctype = "multipart/form-data" action="/WebsiteCreateEvent" name = "form">
+    
+        <div class="txtb">
+            <label>Event Name:</label>
+            <input type = "text" id="eventName" name = "eventName" value = "" placeholder="Enter Event Name" >
+        </div>
+    
+        <div class="txtb">
+            <label>Event Description:</label>
+            <textarea rows="4" cols="50" name = "eventDescription" placeholder="Enter Event Description"></textarea>
+        </div>
+    
+        <input class="btn" type = "submit" value="Upload"  name = "UploadButton">
+    
+        </form>
+    
+    
+    
+        <form method = "get" enctype = "multipart/form-data" action="/mainPage">   
+            <input class = "btn" type = "submit" value="Main Page">
+        </form>
+    
+    </div>
+
+</body>

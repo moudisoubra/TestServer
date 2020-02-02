@@ -22,7 +22,7 @@ function EventSystem(events, mongoose)
         eventID: String
     });
 
-    var eventModel = mongoose.model('event', eventSchema);
+    var eventModel = mongoose.model('events', eventSchema);
 
     console.log("Event System Started");
 

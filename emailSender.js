@@ -101,7 +101,7 @@
         var otherLanguageValue = req.body.otherLanguageValue;
         var computerSkills = req.body.computerSkills;
         var paragraph = req.body.paragraph;
-
+        var siteDirection = "";
 
         var download;
         var documentDefinition = {
@@ -256,7 +256,7 @@
     
             download = Buffer.from(data.toString('utf-8'), 'base64');
 
-            fs.writeFile(__dirname + "/Uploads/whatever.pdf" , download, function(err) {
+            fs.writeFile(__dirname + "/Uploads/"+associateName+".pdf" , download, function(err) {
                 if(err) {
                     return console.log(err);
                 }
@@ -269,10 +269,10 @@
                     let HelperOptions = {
                         from: '"Form Robot" testdummynodejs@gmail.com',
                         to: 'moudisoubra001@gmail.com',
-                        subject: "Job Application Form", 
+                        subject: "Job Application Form: " + associateName, 
                         attachments: [        {   // define custom content type for the attachment
-                            filename: 'form.pdf',
-                            path: __dirname + "/Uploads/whatever.pdf",
+                            filename: associateName + ' form.pdf',
+                            path: __dirname + "/Uploads/"+associateName+".pdf",
                             contentType: 'application/pdf'
                         }]
                     };
@@ -280,28 +280,28 @@
                     transporter.sendMail(HelperOptions, (error, info) => {
                         if(error){
                             console.log(error);
-                            fs.unlink(__dirname + "/Uploads/whatever.pdf", function(err) {
+                            fs.unlink(__dirname + "/Uploads/"+associateName+".pdf", function(err) {
                                 if (err) {
                                   throw err
                                 } else {
                                   console.log("Successfully deleted the file.")
                                 }
                               })
-                            res.send("Email Failed");
+                              siteDirection = "/formDidntSend.html";
                         }
                         console.log("Email sent");
                         console.log(info);
-                        fs.unlink(__dirname + "/Uploads/whatever.pdf", function(err) {
+                        fs.unlink(__dirname + "/Uploads/"+associateName+".pdf", function(err) {
                             if (err) {
                               throw err
                             } else {
                               console.log("Successfully deleted the file.")
                             }
                           })
-                        res.send("Email Sent");
+                          siteDirection = "/formSent.html";
                     })
         });
-    
+        res.sendFile(__dirname+siteDirection);
     });
 
 }

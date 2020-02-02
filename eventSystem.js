@@ -79,13 +79,13 @@ function EventSystem(events, mongoose)
 
     events.get("/ListEvents", function (req, res) { //LISTS ALL Teams IN THE DATABASE
         
-        eventModel.find(function (err, event) {
+        eventModel.find(function (err, events) {
 
             if (err) return console.error(err);
             
-            console.log(event);
+            console.log(events);
             
-            res.send({ event });
+            res.send({ events });
         });
     });
 

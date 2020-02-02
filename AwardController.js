@@ -50,7 +50,7 @@ function Awarder(award, mongoose)
         post.awardID = post._id;
         post.save(function (err) { if (err) console.log('Error on save!') });
 
-        res.send({post});
+        res.sendFile(__dirname+"/AwardPosted.html");
     });
 
     award.get("/listAllAwardPosts", function (req, res) { //LISTS ALL Awards IN THE DATABASE

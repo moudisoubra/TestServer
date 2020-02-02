@@ -1,0 +1,46 @@
+
+<head>
+    <title> Post A Job!</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="userForm">
+    
+
+        <h1>
+        Upload a Job Posting!
+        </h1>
+        <div id="error"></div>
+        <form method = "post"  id="form" enctype = "multipart/form-data" action="/WebsiteJobPost" name = "form">
+    
+        <!-- /CreateJobPost/:jobTitle/:jobDepartment/:jobProperty -->
+    
+        <div class="txtb">
+            <label>Job Title:</label>
+            <input type = "text" id="jobTitle" name = "jobTitle" value = "" placeholder="Enter Job Title" >
+        </div>
+    
+        <div class="txtb">
+            <label>Job Department:</label>
+            <input type = "text" id="jobDepartment" name = "jobDepartment" value = "" placeholder="Enter Job Department" >
+        </div>
+
+        <div class="txtb">
+            <label>Job Property:</label>
+            <input type = "text" id="jobProperty" name = "jobProperty" value = "" placeholder="Enter Job Property" >
+        </div>
+        
+        <input class="btn" type = "submit" value="Upload"  name = "UploadButton">
+    
+        </form>
+    
+    
+    
+        <form method = "get" enctype = "multipart/form-data" action="/mainPage">   
+            <input class = "btn" type = "submit" value="Main Page">
+        </form>
+    
+    </div>
+
+</body>

@@ -108,8 +108,6 @@ function EventSystem(events, mongoose)
                         if (error) res.send(error);
                     });
                     res.send("Added to Positive: " + eventID);
-                    //event.totalNumberVotedString = event.totalNumberVoted.toString();
-                    //event.numberVotedForString = event.numberVotedFor.toString();
             }
         });
 
@@ -144,8 +142,6 @@ function EventSystem(events, mongoose)
                     });
 
                     res.send("Added to Negative: " + eventID);
-                    //event.totalNumberVotedString = event.totalNumberVoted.toString();
-                    //event.numberVotedAgainstString = event.numberVotedAgainst.toString();
             }
         });
 

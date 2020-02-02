@@ -15,7 +15,10 @@ function EventSystem(events, mongoose)
         eventDescription: String,
         totalNumberVoted: Number,
         numberVotedAgainst: Number,
-        numberVotedFor: Number,
+        numberVotedFor: Number,        
+        totalNumberVotedString: String,
+        numberVotedAgainstString: String,
+        numberVotedForString: String,
         eventID: String
     });
 
@@ -91,12 +94,22 @@ function EventSystem(events, mongoose)
 
                     eventModel.updateOne({ eventID: eventID },{$inc: { numberVotedFor: points } }, function (error, result) {
                         if (error) res.send(error);
-                        else res.send(result);
                     });
                     eventModel.updateOne({ eventID: eventID },{$inc: { totalNumberVoted: points } }, function (error, result) {
                         if (error) res.send(error);
-                        else res.send(result);
                     });
+                    eventModel.updateOne({ eventID: eventID },{$set: { "totalNumberVotedString" : event.totalNumberVoted.toString() }}, function (error, result) {
+                        if (error) res.send(error);
+                    });                    
+                    eventModel.updateOne({ eventID: eventID },{$set: { "numberVotedForString" : event.numberVotedFor.toString() }}, function (error, result) {
+                        if (error) res.send(error);
+                    });
+                    eventModel.updateOne({ eventID: eventID },{$set: { "numberVotedAgainstString" : event.numberVotedAgainst.toString() }}, function (error, result) {
+                        if (error) res.send(error);
+                    });
+                    res.send("Added to Positive: " + eventID);
+                    //event.totalNumberVotedString = event.totalNumberVoted.toString();
+                    //event.numberVotedForString = event.numberVotedFor.toString();
             }
         });
 
@@ -116,12 +129,23 @@ function EventSystem(events, mongoose)
 
                     eventModel.updateOne({ eventID: eventID },{$inc: { numberVotedAgainst: points } }, function (error, result) {
                         if (error) res.send(error);
-                        else res.send(result);
                     });
                     eventModel.updateOne({ eventID: eventID },{$inc: { totalNumberVoted: points } }, function (error, result) {
                         if (error) res.send(error);
-                        else res.send(result);
                     });
+                    eventModel.updateOne({ eventID: eventID },{$set: { "totalNumberVotedString" : event.totalNumberVoted.toString() }}, function (error, result) {
+                        if (error) res.send(error);
+                    });                    
+                    eventModel.updateOne({ eventID: eventID },{$set: { "numberVotedAgainstString" : event.numberVotedAgainst.toString() }}, function (error, result) {
+                        if (error) res.send(error);
+                    });                    
+                    eventModel.updateOne({ eventID: eventID },{$set: { "numberVotedForString" : event.numberVotedFor.toString() }}, function (error, result) {
+                        if (error) res.send(error);
+                    });
+
+                    res.send("Added to Negative: " + eventID);
+                    //event.totalNumberVotedString = event.totalNumberVoted.toString();
+                    //event.numberVotedAgainstString = event.numberVotedAgainst.toString();
             }
         });
 

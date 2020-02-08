@@ -56,7 +56,8 @@ var usersSchema = new mongoose.Schema({
     user_Department: String,
     user_DOJ: String,
     user_Property:String,
-    user_Position: String
+    user_Position: String,
+    resetPassword: String
 });
 
 var User = mongoose.model('User', usersSchema);
@@ -94,6 +95,31 @@ useExpress.get("/FindUser/:userID", function (req, res) {
 
             var string = user.toString();
 
+            res.send(user);
+        }
+    });
+});
+
+useExpress.get("/ChangePassword/:userID/:userPassword", function (req, res)
+{
+
+    var userID = req.params.userID;
+    var userPassword = req.params.userPassword;
+
+    User.findOne({ "user_ID": userID}, (err, user) => 
+    {
+        if  (!user)
+        {
+            var string = "Didn't find a user with that Login";
+
+            console.log(string);
+
+            res.send(string.toString());
+        }
+        else
+        {
+            user.user_Password = userPassword;
+            user.save(function (err) { if (err) console.log('Error on save!') });
             res.send(user);
         }
     });
@@ -305,7 +331,8 @@ useExpress.post("/getUserInfo", function(req, res)
                 "user_Department": userDepartment,
                 "user_DOJ": userDOJ,
                 "user_Property":userProperty,
-                "user_Position": userPosition
+                "user_Position": userPosition,
+                "resetPassword": 0
             });
 
             console.log("Created: " + U);
@@ -329,7 +356,8 @@ useExpress.post("/getUserInfo", function(req, res)
                 "user_Department": userDepartment,
                 "user_DOJ": userDOJ,
                 "user_Property":userProperty,
-                "user_Position": userPosition
+                "user_Position": userPosition,
+                "resetPassword": 0
             });
 
             console.log("User Found: " + user);

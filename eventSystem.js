@@ -19,7 +19,8 @@ function EventSystem(events, mongoose)
         totalNumberVotedString: String,
         numberVotedAgainstString: String,
         numberVotedForString: String,
-        eventID: String
+        eventID: String,
+        membersVoted: [String]
     });
 
     var eventModel = mongoose.model('events', eventSchema);
@@ -30,6 +31,64 @@ function EventSystem(events, mongoose)
     {
         res.sendFile(__dirname+"/eventPage.html");
     });
+
+    events.get("/updateEventArray/:eventID/:memberID", function (req, res)
+    {
+        var eventID = req.params.eventID;
+        var memberID = req.params.memberID;
+
+        eventModel.findOne({ "eventID": eventID }, (err, event) => {
+            if (!event) {
+                console.log("Didnt find an event with that name");
+                res.send("Didnt find an event with that name");
+            }
+            else {
+
+                    eventModel.updateOne({ eventID: eventID },{$push:{ membersVoted : memberID}}, function (error, result) {
+                        if (error) res.send(error);
+                    });
+                    res.send(event.membersVoted);
+            }
+
+        }); 
+    });
+
+    events.get("/SendEventArray/:eventID", function (req, res)
+    {
+        var eventID = req.params.eventID;
+
+        eventModel.findOne({ "eventID": eventID }, (err, event) => {
+            if (!event) {
+                console.log("Didnt find an event with that name");
+                res.send("Didnt find an event with that name");
+            }
+            else {
+                    res.send(event.membersVoted);
+            }
+
+        }); 
+    });
+
+    events.get("/CheckArray/:eventID/:memberID", function (req, res)
+    {
+        var eventID = req.params.eventID;
+        var memberID = req.params.memberID;
+
+                eventModel.findOne( {  "eventID" : eventID, "membersVoted" : memberID} , (err, ID) => {
+
+                    if(!ID)
+                    {
+                        res.send("False");
+                    }
+                    else
+                    {
+                        res.send("True");
+                    }
+
+                }); 
+
+    });
+
 
     events.get("/CreateEvent/:eventName/:eventDescription", function(req, res)
     {

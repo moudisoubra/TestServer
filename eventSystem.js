@@ -43,7 +43,7 @@ function EventSystem(events, mongoose)
             "eventDescription": eventDescription,
             "totalNumberVoted": 0,
             "numberVotedAgainst": 0,
-            "numberVotedFor": 0.,
+            "numberVotedFor": 0,
             "totalNumberVotedString" : "0",
             "numberVotedAgainstString" : "0",
             "numberVotedForString" : "0"

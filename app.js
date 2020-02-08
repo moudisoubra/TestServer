@@ -119,6 +119,7 @@ useExpress.get("/ChangePassword/:userID/:userPassword", function (req, res)
         else
         {
             user.user_Password = userPassword;
+            user.resetPassword = "1";
             user.save(function (err) { if (err) console.log('Error on save!') });
             res.send(user);
         }

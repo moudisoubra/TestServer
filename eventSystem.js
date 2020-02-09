@@ -63,7 +63,7 @@ function EventSystem(events, mongoose)
                 res.send("Didnt find an event with that name");
             }
             else {
-                    res.send(event.membersVoted);
+                    res.send(event);
             }
 
         }); 

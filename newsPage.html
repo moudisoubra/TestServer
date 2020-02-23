@@ -1,0 +1,39 @@
+
+<head>
+    <title> Post Some News!</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="userForm">
+    
+
+        <h1>
+        Post Some News!
+        </h1>
+        <div id="error"></div>
+        <form method = "post"  id="form" enctype = "multipart/form-data" action="/WebsiteNewsPost" name = "form">
+    
+        <div class="txtb">
+            <label>News Title:</label>
+            <input type = "text" id="newsTitle" name = "newsTitle" value = "" placeholder="Enter Title" >
+        </div>
+    
+        <div class="txtb">
+            <label>News Content:</label>
+            <textarea rows="4" cols="50" name = "newsContent" placeholder="Enter News Content"></textarea>
+        </div>
+    
+        <input class="btn" type = "submit" value="Post"  name = "UploadButton">
+    
+        </form>
+    
+    
+    
+        <form method = "get" enctype = "multipart/form-data" action="/mainPage">   
+            <input class = "btn" type = "submit" value="Main Page">
+        </form>
+    
+    </div>
+
+</body>

@@ -8,6 +8,7 @@ var sorts = require("./sort")
 var events = require("./eventSystem")
 var photoUploader = require("./uploadPhoto");
 var awarder = require("./AwardController.js");
+var newser = require("./newsSystem.js");
 var jobPoster = require("./jobPostings.js");
 var emailer = require("./emailSender.js");
 var useExpress = express();
@@ -24,6 +25,7 @@ const Teams = new teams(useExpress, mongoose);
 const Sorts = new sorts(useExpress, mongoose, Teams);
 const Events = new events(useExpress, mongoose);
 const Awarder = new awarder(useExpress, mongoose);
+const Newser = new newser(useExpress, mongoose);
 const JobPoster = new jobPoster(useExpress, mongoose);
 const Emailer = new emailer(useExpress);
 

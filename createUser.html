@@ -18,17 +18,17 @@
     
         <div class="txtb">
             <label>User ID:</label>
-            <input type = "text" id="userID" name = "userID" value = "" placeholder="Enter ID" >
+            <input type = "text" id="userID" name = "userID" value = "" placeholder="Enter ID" required>
         </div>
     
         <div class="txtb">
             <label>User Name:</label>
-            <input type = "text" id="userName" name = "userName" value = "" placeholder="Enter Name" >
+            <input type = "text" id="userName" name = "userName" value = "" placeholder="Enter Name" required>
         </div>
     
         <div class="txtb">
             <label>User Gender:</label>
-            <select type = "text" placeholder = "Choose Gender" data-style="btn-info" name="userGender" >
+            <select type = "text" placeholder = "Choose Gender" data-style="btn-info" name="userGender" required>
     
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -38,7 +38,7 @@
     
         <div class="txtb">
             <label>User Nationality:</label>
-            <input type = "text" name = "userNationality" value = "" placeholder="Enter Nationality" >
+            <input type = "text" name = "userNationality" value = "" placeholder="Enter Nationality" required>
         </div>
     
         <!-- <div class="txtb">
@@ -56,7 +56,7 @@
     
         <div class="txtb">
             <label>User House:</label>
-            <select type = "text" placeholder = "Choose House" data-style="btn-info" name="userHouse" >
+            <select type = "text" placeholder = "Choose House" data-style="btn-info" name="userHouse" required>
     
                 <option value="0">Red</option>
                 <option value="1">Blue</option>
@@ -68,50 +68,50 @@
     
         <div class="txtb">
             <label>User Login:</label>
-            <input type = "text" name = "userLogin" value = "" placeholder="Enter Login" >
+            <input type = "text" name = "userLogin" value = "" placeholder="Enter Login" required>
         </div>
     
         <div class="txtb1">
             <label>User Property:</label>
-            <input type = "text" name = "userProperty" value = "" placeholder="Enter Property" >
+            <input type = "text" name = "userProperty" value = "" placeholder="Enter Property" required>
         </div>
     
         <div class="txtb1">
             <label>User Department:</label>
-            <input type = "text" name = "userDepartment" value = "" placeholder="Enter Department" >
+            <input type = "text" name = "userDepartment" value = "" placeholder="Enter Department" required>
         </div>
     
         <div class="txtb1">
             <label>User Position:</label>
-            <input type = "text" name = "userPosition" value = "" placeholder="Enter Position" >
+            <input type = "text" name = "userPosition" value = "" placeholder="Enter Position" required>
         </div>   
             
         <div class="txtb1">
             <label>User Date Of Joining:</label>
     
             <label>Month:</label>
-            <input type="number" min="1" max="12" step="1" name="userMonth" oninput="(validity.valid)||(value='');" >
+            <input type="number" min="1" max="12" step="1" name="userMonth" oninput="(validity.valid)||(value='');" required>
     
             <label>Day:</label>
-            <input type="number" min="1" max="31" step="1" name="userDay" oninput="(validity.valid)||(value='');" >
+            <input type="number" min="1" max="31" step="1" name="userDay" oninput="(validity.valid)||(value='');" required>
     
             <label>Year:</label>
-            <input type="number" min="2020" max="2999" step="1" name="userYear" oninput="(validity.valid)||(value='');" >
+            <input type="number" min="2020" max="2999" step="1" name="userYear" oninput="(validity.valid)||(value='');" required>
     
         </div>
     
         <div class="txtb">
             <label>Profile Picture:</label>
-            <input type = "file" name = "picture" id="fileUpload">
+            <input type = "file" name = "picture" id="fileUpload" required>
         </div>
     
-        <input class="btn" type = "submit" value="upload"  name = "UploadButton">
+        <input class="btn" type = "submit" value="upload"  name = "UploadButton" required>
     
         </form>
     
     
     
-        <form method = "get" enctype = "multipart/form-data" action="/mainPage">   
+        <form method = "get" enctype = "multipart/form-data" action="/mainPage" >   
             <input class = "btn" type = "submit" value="Main Page">
         </form>
     

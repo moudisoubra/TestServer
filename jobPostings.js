@@ -36,6 +36,11 @@ function JobPosting(job, mongoose)
         res.send({post});
     });
 
+    job.get("/GetEveryJob", function(req, res)
+    {
+        jobSchema.listCollections()
+    });
+
     job.post("/WebsiteJobPost", function(req, res)
     {
         var jobTitle = req.body.jobTitle;

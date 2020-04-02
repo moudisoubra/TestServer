@@ -1,6 +1,6 @@
 div {
     height: auto; /*if more info comes on the page, it will stretch down*/
-    width: 1000px;
+    width: auto;
     margin: 0 auto; /*this will cause the div to be in the center*/
     }
 body{

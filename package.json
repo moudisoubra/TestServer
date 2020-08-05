@@ -13,7 +13,7 @@
     "body-parser": "^1.15.2",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
-    "express-fileupload": "^1.1.6",
+    "express-fileupload": "^1.1.9",
     "mongoose": "^5.8.7",
     "multer": "^1.2.0",
     "newrelic": "^6.2.0",
